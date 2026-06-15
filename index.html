@@ -1,80 +1,584 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexandre Ramos Moreno | Ciberseguridad</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; }
-        header { background: #111; padding: 60px 20px; text-align: center; border-bottom: 2px solid #00ff88; }
-        header h1 { font-size: 2.5rem; color: #00ff88; }
-        header p { margin-top: 10px; color: #aaa; font-size: 1.1rem; }
-        section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        h2 { color: #00ff88; margin-bottom: 15px; border-left: 4px solid #00ff88; padding-left: 10px; }
-        .card { background: #1a1a1a; border-radius: 8px; padding: 20px; margin-bottom: 15px; border: 1px solid #222; }
-        .card h3 { color: #fff; margin-bottom: 8px; }
-        .card p { color: #aaa; font-size: 0.95rem; }
-        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-        .skill { background: #00ff8822; color: #00ff88; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #00ff8855; }
-        footer { text-align: center; padding: 30px; color: #555; margin-top: 60px; border-top: 1px solid #222; }
-        a { color: #00ff88; text-decoration: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexandre Ramos Moreno | Ciberseguridad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080b0f;
+      --bg2: #0d1117;
+      --cyan: #00f5ff;
+      --green: #00ff88;
+      --purple: #7b2fff;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --card: #0d1117;
+      --border: #21262d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(8,11,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 120px 60px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+    }
+
+    .hero-sub {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+
+    .hero-sub .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.1em;
+      background: var(--cyan);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 24px rgba(0,245,255,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0,245,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 60px;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 48px;
+      color: #fff;
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 680px;
+    }
+
+    .about-text p + p { margin-top: 16px; }
+
+    /* SKILLS CAROUSEL */
+    .carousel-wrapper {
+      overflow: hidden;
+      position: relative;
+      margin: 0 -60px;
+    }
+
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+    }
+
+    .carousel-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg), transparent);
+    }
+
+    .carousel-wrapper::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--bg), transparent);
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      animation: scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .carousel-track:hover { animation-play-state: paused; }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 110px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    .tool-card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 16px rgba(0,245,255,0.15);
+    }
+
+    .tool-icon {
+      font-size: 2rem;
+    }
+
+    .tool-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* FORMACION */
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: var(--cyan); }
+
+    .edu-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .edu-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .edu-year {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      margin-left: 24px;
+    }
+
+    /* PROYECTOS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+    }
+
+    .project-card h3 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: 'Share Tech Mono', monospace;
+      background: rgba(0,245,255,0.1);
+      color: var(--cyan);
+      border: 1px solid rgba(0,245,255,0.2);
+    }
+
+    /* CONTACTO */
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .contact-box h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer span { color: var(--cyan); }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 60px 24px; }
+      .edu-card { flex-direction: column; }
+      .edu-year { margin-left: 0; margin-top: 8px; }
+      .contact-box { padding: 32px 24px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Alexandre Ramos Moreno</h1>
-        <p>Ciberseguridad | DFIR | Incident Response</p>
-        <p style="margin-top:8px"><a href="mailto:alexandrerm24@gmail.com">alexandrerm24@gmail.com</a> · <a href="https://linkedin.com/in/alexandreramosmoreno" target="_blank">LinkedIn</a> · <a href="https://github.com/AlexandreRamosMoreno" target="_blank">GitHub</a></p>
-    </header>
 
-    <section>
-        <h2>Sobre mí</h2>
-        <div class="card">
-            <p>Graduado en Informática y Máster en Ciberseguridad. Apasionado por la seguridad ofensiva y defensiva, con especial interés en análisis forense digital y respuesta a incidentes.</p>
-        </div>
-    </section>
+  <nav>
+    <div class="nav-logo">ARM://sec</div>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
-    <section>
-        <h2>Formación</h2>
-        <div class="card">
-            <h3>Máster en Ciberseguridad</h3>
-            <p>Especialización en seguridad ofensiva, defensiva, DFIR e Incident Response.</p>
-        </div>
-        <div class="card">
-            <h3>Grado en Informática</h3>
-            <p>Base técnica en sistemas, redes y programación.</p>
-        </div>
-    </section>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">// CYBERSECURITY PORTFOLIO</div>
+    <h1>Alexandre<br><span>Ramos Moreno</span></h1>
+    <p class="hero-sub" id="typing-text"></p>
+    <div class="hero-buttons">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
+    </div>
+  </div>
 
-    <section>
-        <h2>Habilidades</h2>
-        <div class="card">
-            <div class="skills">
-                <span class="skill">DFIR</span>
-                <span class="skill">Incident Response</span>
-                <span class="skill">Análisis forense</span>
-                <span class="skill">Pentesting</span>
-                <span class="skill">SIEM</span>
-                <span class="skill">Linux</span>
-                <span class="skill">Wireshark</span>
-                <span class="skill">Metasploit</span>
-                <span class="skill">Python</span>
-                <span class="skill">Redes</span>
-            </div>
-        </div>
-    </section>
+  <div class="divider"></div>
 
-    <section>
-        <h2>Proyectos</h2>
-        <div class="card">
-            <h3>En construcción 🚧</h3>
-            <p>Próximamente añadiré proyectos y writeups de CTFs.</p>
-        </div>
-    </section>
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi">
+    <div class="section-label">01 // about</div>
+    <h2 class="section-title">Sobre mí</h2>
+    <div class="about-text">
+      <p>Graduado en Informática y Máster en Ciberseguridad, con especial interés en análisis forense digital, respuesta a incidentes y seguridad ofensiva.</p>
+      <p>Me apasiona entender cómo funcionan los ataques para poder defenderse mejor de ellos. Actualmente en búsqueda activa de mi primer rol profesional en ciberseguridad.</p>
+    </div>
+  </section>
 
-    <footer>
-        <p>© 2026 Alexandre Ramos Moreno · <a href="mailto:alexandrerm24@gmail.com">Contacto</a></p>
-    </footer>
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills" style="padding-bottom: 40px;">
+    <div class="section-label">02 // tools & skills</div>
+    <h2 class="section-title">Herramientas</h2>
+  </section>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="carousel">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <div style="height: 80px;"></div>
+  <div class="divider"></div>
+
+  <!-- FORMACIÓN -->
+  <section id="formacion">
+    <div class="section-label">03 // education</div>
+    <h2 class="section-title">Formación</h2>
+
+    <div class="edu-card">
+      <div>
+        <h3>Máster en Ciberseguridad</h3>
+        <p>Seguridad ofensiva, defensiva, DFIR e Incident Response</p>
+      </div>
+      <div class="edu-year">2024–2025</div>
+    </div>
+
+    <div class="edu-card">
+      <div>
+        <h3>Grado en Ingeniería Informática</h3>
+        <p>Base técnica en sistemas, redes y programación</p>
+      </div>
+      <div class="edu-year">2020–2024</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="section-label">04 // projects</div>
+    <h2 class="section-title">Proyectos</h2>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>🚧 En construcción</h3>
+        <p>Próximamente añadiré writeups de CTFs, labs de Hack The Box y proyectos de análisis forense.</p>
+        <span class="project-tag">coming soon</span>
+      </div>
+      <div class="project-card">
+        <h3>🚧 En construcción</h3>
+        <p>Análisis de malware y casos prácticos de incident response desarrollados durante el Máster.</p>
+        <span class="project-tag">coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-label">05 // contact</div>
+    <h2 class="section-title">Contacto</h2>
+    <div class="contact-box">
+      <h3>¿Hablamos?</h3>
+      <p>Abierto a oportunidades en ciberseguridad, prácticas y colaboraciones.</p>
+      <div class="contact-links">
+        <a href="mailto:alexandrerm24@gmail.com" class="btn btn-primary">Email</a>
+        <a href="https://linkedin.com/in/alexandreramosmoreno" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <span>Alexandre Ramos Moreno</span> · alexandrerm.dev</p>
+  </footer>
+
+  <script>
+    // TYPING EFFECT
+    const phrases = [
+      'DFIR & Incident Response_',
+      'Análisis Forense Digital_',
+      'Pentesting & Seguridad Ofensiva_',
+      'Blue Team | Red Team_'
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typing-text');
+
+    function type() {
+      const current = phrases[pi];
+      if (!deleting) {
+        el.textContent = current.slice(0, ++ci);
+        if (ci === current.length) { deleting = true; setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = current.slice(0, --ci);
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(type, deleting ? 40 : 70);
+    }
+    type();
+
+    // CAROUSEL
+    const tools = [
+      { icon: '🐉', name: 'Kali Linux' },
+      { icon: '🦈', name: 'Wireshark' },
+      { icon: '💣', name: 'Metasploit' },
+      { icon: '🕷️', name: 'Burp Suite' },
+      { icon: '🔍', name: 'Nmap' },
+      { icon: '🛡️', name: 'Splunk' },
+      { icon: '🔐', name: 'OpenVAS' },
+      { icon: '🧠', name: 'Volatility' },
+      { icon: '🐍', name: 'Python' },
+      { icon: '🖥️', name: 'Linux' },
+      { icon: '📡', name: 'Snort' },
+      { icon: '🔎', name: 'Autopsy' },
+      { icon: '🌐', name: 'OSINT' },
+      { icon: '⚔️', name: 'Nessus' },
+    ];
+
+    const track = document.getElementById('carousel');
+    const doubled = [...tools, ...tools];
+    doubled.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'tool-card';
+      card.innerHTML = `<div class="tool-icon">${t.icon}</div><div class="tool-name">${t.name}</div>`;
+      track.appendChild(card);
+    });
+  </script>
+
 </body>
 </html>
