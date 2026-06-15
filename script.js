@@ -73,21 +73,6 @@ const SYS_TOOLS = [
   { name: 'OSINT',      emoji: '🌐' },
 ];
 
-/* ── BUILD CAROUSEL ── */
-(function buildCarousel() {
-  const track = document.getElementById('carousel-track');
-  const doubled = [...ALL_TOOLS, ...ALL_TOOLS];
-  doubled.forEach(t => {
-    const el = document.createElement('div');
-    el.className = 'c-tool';
-    el.innerHTML = `
-      <img src="${t.img}" alt="${t.name}" onerror="this.style.display='none'">
-      <span>${t.name}</span>
-    `;
-    track.appendChild(el);
-  });
-})();
-
 /* ── BUILD SKILL GRIDS ── */
 function buildGrid(containerId, tools) {
   const container = document.getElementById(containerId);
