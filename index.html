@@ -1,206 +1,282 @@
-Aquí va:
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARM | Ciberseguridad</title>
+  <title>Alexandre Ramos Moreno — Cybersecurity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- MATRIX RAIN -->
-  <canvas id="matrix-canvas"></canvas>
-
   <!-- NAV -->
-  <nav>
-    <div class="nav-logo">ARM</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Formación</a></li>
-      <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#contact">Contacto</a></li>
-    </ul>
-    <a href="#contact" class="nav-hire">Hire me</a>
-  </nav>
-
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="circuit-bg"></div>
-    <p class="hero-eyebrow">// INITIATING USER PROFILE...</p>
-    <h1><span class="glitch" data-text="ALEXANDRE">ALEXANDRE</span><br>RAMOS MORENO</h1>
-    <p class="hero-subtitle">CYBERSECURITY SPECIALIST</p>
-    <p class="hero-roles">
-      <span>DFIR</span> &nbsp;|&nbsp; <span>INCIDENT RESPONSE</span> &nbsp;|&nbsp; <span>PENTESTING</span>
-    </p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn btn-green">Access Archive</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <span class="nav-brand-dot"></span>
+        Alexandre Ramos Moreno
+      </a>
+      <nav class="nav-links">
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Formación</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#contact" class="nav-cta">Contacto</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <div class="hud-divider"><span class="hud-divider-icon">◈ WHO AM I ◈</span></div>
+  <main>
 
-  <!-- ══ ABOUT ══ -->
-  <section class="section" id="about">
-    <div class="section-header">
-      <div class="section-tag">// about.exe</div>
-      <h2 class="section-title">Perfil <span>&gt;</span></h2>
-    </div>
-
-    <div class="about-grid">
-      <div class="id-card">
-        <div class="id-card-header">WHO AM I ??</div>
-        <div class="id-row">
-          <span class="id-key">User</span>
-          <span class="id-val">ARM</span>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-badge">Disponible para trabajar</div>
+        <h1 class="hero-title">
+          Especialista en<br>
+          <span class="hero-accent">Ciberseguridad</span>
+        </h1>
+        <p class="hero-desc">
+          Graduado en Informática con Máster en Ciberseguridad. Especializado en análisis forense digital, respuesta a incidentes y seguridad ofensiva.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+          <a href="#contact" class="btn btn-ghost">Contactar</a>
         </div>
-        <div class="id-row">
-          <span class="id-key">Real Name</span>
-          <span class="id-val cyan">Alexandre Ramos Moreno</span>
-        </div>
-        <div class="id-row">
-          <span class="id-key">Role</span>
-          <span class="id-val">Cybersecurity Analyst</span>
-        </div>
-        <div class="id-row">
-          <span class="id-key">OS</span>
-          <span class="id-val">Kali Linux 2024.1</span>
-        </div>
-        <div class="id-row">
-          <span class="id-key">Education</span>
-          <span class="id-val">MSc. Ciberseguridad</span>
-        </div>
-        <div class="id-row">
-          <span class="id-key">Location</span>
-          <span class="id-val cyan">España 🇪🇸</span>
-        </div>
-        <div class="id-row">
-          <span class="id-key">Status</span>
-          <span class="id-val" style="color:#00ff41; text-shadow: 0 0 8px #00ff41;">▶ Open to Work</span>
-        </div>
-        <div class="id-prompt">
-          <span class="prompt-char">$ </span>uname -a<br>
-          <span style="color:#4a7a55">Linux SecBox 6.6.0-kali-amd64 #1 SMP PREEMPT</span>
-        </div>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div class="id-card">
-          <div class="id-card-header">BIO</div>
-          <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text); line-height: 1.8;">
-            Graduado en Informática y Máster en Ciberseguridad. Me apasiona entender cómo funcionan los ataques para poder defenderse mejor de ellos.
-          </p>
-          <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); line-height: 1.8; margin-top: 10px;">
-            Especializado en análisis forense digital, respuesta a incidentes y seguridad ofensiva. Actualmente en búsqueda activa de mi primer rol profesional.
-          </p>
-        </div>
-
-        <div class="id-card">
-          <div class="id-card-header">INTERESES</div>
-          <div class="cert-grid">
-            <span class="cert-badge">DFIR</span>
-            <span class="cert-badge">Incident Response</span>
-            <span class="cert-badge">Forense Digital</span>
-            <span class="cert-badge">Pentesting</span>
-            <span class="cert-badge">Blue Team</span>
-            <span class="cert-badge">OSINT</span>
-            <span class="cert-badge">Malware Analysis</span>
-            <span class="cert-badge">CTF</span>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Titulaciones</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">DFIR</span>
+            <span class="stat-label">Especialidad</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">ES</span>
+            <span class="stat-label">Ubicación</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- ══ SKILLS GRID ══ -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-tag">// skills.sh</div>
-      <h2 class="section-title">Core <span>Skills</span></h2>
-    </div>
-    <div class="skills-container">
-      <div class="skills-group">
-        <div class="skills-group-title">Security Tools</div>
-        <div class="tools-grid" id="sec-tools"></div>
-      </div>
-      <div class="skills-group">
-        <div class="skills-group-title">Sistemas & Redes</div>
-        <div class="tools-grid" id="sys-tools"></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="hud-divider"><span class="hud-divider-icon">◈ EDUCATION ◈</span></div>
-
-  <!-- ══ FORMACIÓN ══ -->
-  <section class="section" id="education">
-    <div class="section-header">
-      <div class="section-tag">// education.log</div>
-      <h2 class="section-title">Forma<span>ción</span></h2>
-    </div>
-    <div class="edu-list">
-      <div class="edu-card">
-        <div>
-          <h3>MÁSTER EN CIBERSEGURIDAD</h3>
-          <p>Seguridad ofensiva y defensiva · DFIR · Incident Response · Análisis forense</p>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hcard-header">
+            <span class="hcard-dot red"></span>
+            <span class="hcard-dot yellow"></span>
+            <span class="hcard-dot green"></span>
+            <span class="hcard-title">threat_analysis.sh</span>
+          </div>
+          <div class="hcard-body">
+            <p><span class="c-comment"># Incident Response Protocol</span></p>
+            <p><span class="c-key">status</span><span class="c-op"> = </span><span class="c-val">"ACTIVE"</span></p>
+            <p><span class="c-key">analyst</span><span class="c-op"> = </span><span class="c-val">"Alexandre R.M."</span></p>
+            <p><span class="c-key">speciality</span><span class="c-op"> = </span><span class="c-val">"DFIR"</span></p>
+            <p class="mt"><span class="c-comment"># Running diagnostics...</span></p>
+            <p><span class="c-fn">scan</span><span class="c-op">(</span><span class="c-val">"network"</span><span class="c-op">)</span> <span class="c-comment">✓</span></p>
+            <p><span class="c-fn">analyze</span><span class="c-op">(</span><span class="c-val">"logs"</span><span class="c-op">)</span> <span class="c-comment">✓</span></p>
+            <p><span class="c-fn">forensics</span><span class="c-op">(</span><span class="c-val">"artifacts"</span><span class="c-op">)</span> <span class="c-comment">✓</span></p>
+            <p class="mt"><span class="c-key">threat_level</span><span class="c-op"> = </span><span class="c-val green">"CONTAINED"</span></p>
+          </div>
         </div>
-        <div class="edu-year">2024 – 2025</div>
       </div>
-      <div class="edu-card">
-        <div>
-          <h3>GRADO EN INGENIERÍA INFORMÁTICA</h3>
-          <p>Sistemas · Redes · Programación · Base técnica sólida</p>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-label">Sobre mí</div>
+        <div class="about-grid">
+          <div class="about-text">
+            <h2 class="section-title">Apasionado por la<br>seguridad digital</h2>
+            <p>Graduado en Ingeniería Informática y Máster en Ciberseguridad, con especial interés en el análisis forense digital y la respuesta a incidentes.</p>
+            <p>Mi enfoque combina la mentalidad ofensiva con la capacidad defensiva: entender cómo atacan los adversarios para construir mejores defensas.</p>
+            <p>Actualmente en búsqueda activa de mi primer rol profesional en ciberseguridad, con disponibilidad inmediata.</p>
+          </div>
+          <div class="about-cards">
+            <div class="info-card">
+              <div class="info-card-icon">🎯</div>
+              <div>
+                <h4>Áreas de interés</h4>
+                <p>DFIR · Incident Response · Forense Digital · Pentesting · Blue Team</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🌍</div>
+              <div>
+                <h4>Ubicación</h4>
+                <p>España — Disponible para trabajo presencial, híbrido o remoto</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">📬</div>
+              <div>
+                <h4>Contacto</h4>
+                <p>alexandrerm24@gmail.com</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="edu-year">2020 – 2024</div>
       </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section section-alt" id="skills">
+      <div class="section-inner">
+        <div class="section-label">Habilidades</div>
+        <h2 class="section-title">Stack técnico</h2>
+
+        <div class="skills-grid">
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">Seguridad Ofensiva</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-icon">🔍</span>Nmap</div>
+              <div class="skill-item"><span class="skill-icon">💣</span>Metasploit</div>
+              <div class="skill-item"><span class="skill-icon">🕷️</span>Burp Suite</div>
+              <div class="skill-item"><span class="skill-icon">🔐</span>OpenVAS</div>
+              <div class="skill-item"><span class="skill-icon">⚠️</span>Nessus</div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">Forense & DFIR</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-icon">🧠</span>Volatility</div>
+              <div class="skill-item"><span class="skill-icon">🔎</span>Autopsy</div>
+              <div class="skill-item"><span class="skill-icon">🦈</span>Wireshark</div>
+              <div class="skill-item"><span class="skill-icon">🛡️</span>Splunk</div>
+              <div class="skill-item"><span class="skill-icon">📡</span>Snort</div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">Sistemas & Dev</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-icon">🐉</span>Kali Linux</div>
+              <div class="skill-item"><span class="skill-icon">🐍</span>Python</div>
+              <div class="skill-item"><span class="skill-icon">💻</span>Bash</div>
+              <div class="skill-item"><span class="skill-icon">🌐</span>Redes TCP/IP</div>
+              <div class="skill-item"><span class="skill-icon">📂</span>Git</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMACIÓN -->
+    <section class="section" id="education">
+      <div class="section-inner">
+        <div class="section-label">Formación</div>
+        <h2 class="section-title">Educación</h2>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-year">2024 – 2025</div>
+              <h3>Máster en Ciberseguridad</h3>
+              <p>Seguridad ofensiva y defensiva, análisis forense digital, respuesta a incidentes, SIEM, pentesting y hardening de sistemas.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-year">2020 – 2024</div>
+              <h3>Grado en Ingeniería Informática</h3>
+              <p>Fundamentos de sistemas, redes, programación y arquitectura de software. Base técnica sólida para el mundo de la ciberseguridad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="section section-alt" id="projects">
+      <div class="section-inner">
+        <div class="section-label">Proyectos</div>
+        <h2 class="section-title">Trabajo reciente</h2>
+
+        <div class="projects-grid">
+          <div class="project-card reveal">
+            <div class="project-header">
+              <span class="project-tag">DFIR</span>
+              <span class="project-status">En construcción</span>
+            </div>
+            <h3>DFIR Lab</h3>
+            <p>Casos prácticos de análisis forense digital e incident response. Análisis de memoria RAM, logs de sistema y artefactos maliciosos.</p>
+            <div class="project-footer">
+              <span class="tech-tag">Volatility</span>
+              <span class="tech-tag">Autopsy</span>
+              <span class="tech-tag">Wireshark</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-header">
+              <span class="project-tag">Pentesting</span>
+              <span class="project-status">En construcción</span>
+            </div>
+            <h3>CTF Writeups</h3>
+            <p>Documentación de resolución de retos en Hack The Box y TryHackMe. Técnicas de explotación, escalada de privilegios y post-explotación.</p>
+            <div class="project-footer">
+              <span class="tech-tag">Metasploit</span>
+              <span class="tech-tag">Nmap</span>
+              <span class="tech-tag">Burp Suite</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-header">
+              <span class="project-tag">Malware</span>
+              <span class="project-status">En construcción</span>
+            </div>
+            <h3>Malware Analysis</h3>
+            <p>Análisis estático y dinámico de muestras de malware en entorno controlado. Identificación de IOCs y documentación de comportamiento.</p>
+            <div class="project-footer">
+              <span class="tech-tag">IDA Pro</span>
+              <span class="tech-tag">Ghidra</span>
+              <span class="tech-tag">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <div class="contact-box">
+          <div class="section-label">Contacto</div>
+          <h2 class="section-title">¿Hablamos?</h2>
+          <p class="contact-desc">Abierto a oportunidades en ciberseguridad en España. Disponibilidad inmediata para trabajo presencial, híbrido o remoto.</p>
+          <div class="contact-links">
+            <a href="mailto:alexandrerm24@gmail.com" class="btn btn-primary">
+              <span>✉</span> Email
+            </a>
+            <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" class="btn btn-ghost">
+              <span>in</span> LinkedIn
+            </a>
+            <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="btn btn-ghost">
+              <span>⌥</span> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 Alexandre Ramos Moreno</span>
+      <span class="footer-dot">·</span>
+      <span>alexandrerm.dev</span>
     </div>
-  </section>
-
-  <div class="hud-divider"><span class="hud-divider-icon">◈ PROJECTS ◈</span></div>
-
-  <!-- ══ PROYECTOS ══ -->
-  <section class="section" id="projects">
-    <div class="section-header">
-      <div class="section-tag">// projects.db</div>
-      <h2 class="section-title">Pro<span>yectos</span></h2>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-status">En construcción</div>
-        <h3>CTF WRITEUPS</h3>
-        <p>Resolución de retos de Hack The Box, TryHackMe y competiciones CTF. Documentación de técnicas y metodologías de ataque.</p>
-      </div>
-      <div class="project-card">
-        <div class="project-status">En construcción</div>
-        <h3>DFIR LAB</h3>
-        <p>Casos prácticos de análisis forense digital e incident response desarrollados durante el Máster. Análisis de memoria, logs y artefactos.</p>
-      </div>
-      <div class="project-card">
-        <div class="project-status">En construcción</div>
-        <h3>MALWARE ANALYSIS</h3>
-        <p>Análisis estático y dinámico de muestras de malware en entorno controlado. Documentación de comportamiento y IOCs.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="hud-divider"><span class="hud-divider-icon">◈ CONTACT ◈</span></div>
-
-  <!-- ══ CONTACTO ══ -->
-  <section class="section" id="contact">
-    <div class="contact-box">
-      <h3>GET IN TOUCH</h3>
-      <p>Abierto a oportunidades en ciberseguridad,<br>prácticas y colaboraciones en España.</p>
-      <div class="contact-links">
-        <a href="mailto:alexandrerm24@gmail.com" class="btn btn-green">Email</a>
-        <a href="https://linkedin.com/in/alexandreramosmoreno" target="_blank" class="btn btn-outline">LinkedIn</a>
-        <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="btn btn-outline">GitHub</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2026 &nbsp;<span>Alexandre Ramos Moreno</span>&nbsp; · &nbsp;alexandrerm.dev</p>
   </footer>
 
   <script src="script.js"></script>
