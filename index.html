@@ -3,521 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexandre Ramos Moreno | Ciberseguridad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #080b0f;
-      --bg2: #0d1117;
-      --cyan: #00f5ff;
-      --green: #00ff88;
-      --purple: #7b2fff;
-      --text: #c9d1d9;
-      --muted: #8b949e;
-      --card: #0d1117;
-      --border: #21262d;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* GRID BACKGROUND */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 60px;
-      background: rgba(8,11,15,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--cyan);
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--cyan); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 120px 60px 80px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--cyan);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-      opacity: 0.8;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 span {
-      color: var(--cyan);
-    }
-
-    .hero-sub {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 40px;
-    }
-
-    .hero-sub .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 1.1em;
-      background: var(--cyan);
-      vertical-align: text-bottom;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink { 50% { opacity: 0; } }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--cyan);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 24px rgba(0,245,255,0.5);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--cyan);
-      border: 1px solid var(--cyan);
-    }
-
-    .btn-outline:hover {
-      background: rgba(0,245,255,0.08);
-      transform: translateY(-2px);
-    }
-
-    /* SECTIONS */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 80px 60px;
-    }
-
-    .section-label {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--cyan);
-      font-size: 0.75rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 48px;
-      color: #fff;
-    }
-
-    /* ABOUT */
-    .about-text {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text);
-      max-width: 680px;
-    }
-
-    .about-text p + p { margin-top: 16px; }
-
-    /* SKILLS CAROUSEL */
-    .carousel-wrapper {
-      overflow: hidden;
-      position: relative;
-      margin: 0 -60px;
-    }
-
-    .carousel-wrapper::before,
-    .carousel-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 80px;
-      z-index: 2;
-    }
-
-    .carousel-wrapper::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--bg), transparent);
-    }
-
-    .carousel-wrapper::after {
-      right: 0;
-      background: linear-gradient(-90deg, var(--bg), transparent);
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 16px;
-      animation: scroll 30s linear infinite;
-      width: max-content;
-    }
-
-    .carousel-track:hover { animation-play-state: paused; }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .tool-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      min-width: 110px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      flex-shrink: 0;
-    }
-
-    .tool-card:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 0 16px rgba(0,245,255,0.15);
-    }
-
-    .tool-icon {
-      font-size: 2rem;
-    }
-
-    .tool-name {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    /* FORMACION */
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px 32px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-
-    .edu-card:hover { border-color: var(--cyan); }
-
-    .edu-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .edu-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .edu-year {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--cyan);
-      font-size: 0.85rem;
-      white-space: nowrap;
-      margin-left: 24px;
-    }
-
-    /* PROYECTOS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .project-card:hover {
-      border-color: var(--cyan);
-      transform: translateY(-4px);
-    }
-
-    .project-card h3 {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-
-    .project-card p {
-      color: var(--muted);
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-
-    .project-tag {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-family: 'Share Tech Mono', monospace;
-      background: rgba(0,245,255,0.1);
-      color: var(--cyan);
-      border: 1px solid rgba(0,245,255,0.2);
-    }
-
-    /* CONTACTO */
-    .contact-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 48px;
-      text-align: center;
-    }
-
-    .contact-box h3 {
-      font-size: 1.5rem;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 32px;
-    }
-
-    .contact-links {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 32px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
-    }
-
-    footer span { color: var(--cyan); }
-
-    /* DIVIDER */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 auto;
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hero { padding: 100px 24px 60px; }
-      section { padding: 60px 24px; }
-      .edu-card { flex-direction: column; }
-      .edu-year { margin-left: 0; margin-top: 8px; }
-      .contact-box { padding: 32px 24px; }
-    }
-  </style>
+  <title>ARM | Ciberseguridad</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- MATRIX RAIN -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- NAV -->
   <nav>
-    <div class="nav-logo">ARM://sec</div>
+    <div class="nav-logo">ARM</div>
     <ul class="nav-links">
-      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#formacion">Formación</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#education">Formación</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#contact">Contacto</a></li>
     </ul>
+    <a href="#contact" class="nav-hire">Hire me</a>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-tag">// CYBERSECURITY PORTFOLIO</div>
-    <h1>Alexandre<br><span>Ramos Moreno</span></h1>
-    <p class="hero-sub" id="typing-text"></p>
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="circuit-bg"></div>
+    <p class="hero-eyebrow">// INITIATING USER PROFILE...</p>
+    <h1><span class="glitch" data-text="ALEXANDRE">ALEXANDRE</span><br>RAMOS MORENO</h1>
+    <p class="hero-subtitle">CYBERSECURITY SPECIALIST</p>
+    <p class="hero-roles">
+      <span>DFIR</span> &nbsp;|&nbsp; <span>INCIDENT RESPONSE</span> &nbsp;|&nbsp; <span>PENTESTING</span>
+    </p>
     <div class="hero-buttons">
-      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
-      <a href="#contacto" class="btn btn-outline">Contacto</a>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi">
-    <div class="section-label">01 // about</div>
-    <h2 class="section-title">Sobre mí</h2>
-    <div class="about-text">
-      <p>Graduado en Informática y Máster en Ciberseguridad, con especial interés en análisis forense digital, respuesta a incidentes y seguridad ofensiva.</p>
-      <p>Me apasiona entender cómo funcionan los ataques para poder defenderse mejor de ellos. Actualmente en búsqueda activa de mi primer rol profesional en ciberseguridad.</p>
+      <a href="#projects" class="btn btn-green">Access Archive</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- DIVIDER -->
+  <div class="hud-divider"><span class="hud-divider-icon">◈ WHO AM I ◈</span></div>
 
-  <!-- SKILLS -->
-  <section id="skills" style="padding-bottom: 40px;">
-    <div class="section-label">02 // tools & skills</div>
-    <h2 class="section-title">Herramientas</h2>
+  <!-- ══ ABOUT ══ -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <div class="section-tag">// about.exe</div>
+      <h2 class="section-title">Perfil <span>&gt;</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <!-- ID CARD -->
+      <div class="id-card">
+        <div class="id-card-header">WHO AM I ??</div>
+
+        <div class="id-row">
+          <span class="id-key">User</span>
+          <span class="id-val">ARM</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Real Name</span>
+          <span class="id-val cyan">Alexandre Ramos Moreno</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Role</span>
+          <span class="id-val">Cybersecurity Analyst</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">OS</span>
+          <span class="id-val">Kali Linux 2024.1</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Education</span>
+          <span class="id-val">MSc. Ciberseguridad</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Location</span>
+          <span class="id-val cyan">España 🇪🇸</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">Status</span>
+          <span class="id-val" style="color:#00ff41; text-shadow: 0 0 8px #00ff41;">▶ Open to Work</span>
+        </div>
+
+        <div class="id-prompt">
+          <span class="prompt-char">$ </span>uname -a<br>
+          <span style="color:#4a7a55">Linux SecBox 6.6.0-kali-amd64 #1 SMP PREEMPT</span>
+        </div>
+      </div>
+
+      <!-- BIO + CERTS -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="id-card">
+          <div class="id-card-header">BIO</div>
+          <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text); line-height: 1.8;">
+            Graduado en Informática y Máster en Ciberseguridad. Me apasiona entender cómo funcionan los ataques para poder defenderse mejor de ellos.
+          </p>
+          <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); line-height: 1.8; margin-top: 10px;">
+            Especializado en análisis forense digital, respuesta a incidentes y seguridad ofensiva. Actualmente en búsqueda activa de mi primer rol profesional.
+          </p>
+        </div>
+
+        <div class="id-card">
+          <div class="id-card-header">INTERESES</div>
+          <div class="cert-grid">
+            <span class="cert-badge">DFIR</span>
+            <span class="cert-badge">Incident Response</span>
+            <span class="cert-badge">Forense Digital</span>
+            <span class="cert-badge">Pentesting</span>
+            <span class="cert-badge">Blue Team</span>
+            <span class="cert-badge">OSINT</span>
+            <span class="cert-badge">Malware Analysis</span>
+            <span class="cert-badge">CTF</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="carousel-wrapper">
-    <div class="carousel-track" id="carousel">
+  <!-- DIVIDER -->
+  <div class="hud-divider"><span class="hud-divider-icon">◈ SECURITY TOOLS ◈</span></div>
+
+  <!-- ══ CAROUSEL ══ -->
+  <div class="carousel-section" id="skills">
+    <div class="carousel-fade-left"></div>
+    <div class="carousel-fade-right"></div>
+    <div class="carousel-track" id="carousel-track">
       <!-- filled by JS -->
     </div>
   </div>
 
-  <div style="height: 80px;"></div>
-  <div class="divider"></div>
-
-  <!-- FORMACIÓN -->
-  <section id="formacion">
-    <div class="section-label">03 // education</div>
-    <h2 class="section-title">Formación</h2>
-
-    <div class="edu-card">
-      <div>
-        <h3>Máster en Ciberseguridad</h3>
-        <p>Seguridad ofensiva, defensiva, DFIR e Incident Response</p>
-      </div>
-      <div class="edu-year">2024–2025</div>
+  <!-- ══ SKILLS GRID ══ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-tag">// skills.sh</div>
+      <h2 class="section-title">Core <span>Skills</span></h2>
     </div>
 
-    <div class="edu-card">
-      <div>
-        <h3>Grado en Ingeniería Informática</h3>
-        <p>Base técnica en sistemas, redes y programación</p>
+    <div class="skills-container">
+      <div class="skills-group">
+        <div class="skills-group-title">Security Tools</div>
+        <div class="tools-grid" id="sec-tools"></div>
       </div>
-      <div class="edu-year">2020–2024</div>
+      <div class="skills-group">
+        <div class="skills-group-title">Sistemas & Redes</div>
+        <div class="tools-grid" id="sys-tools"></div>
+      </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- DIVIDER -->
+  <div class="hud-divider"><span class="hud-divider-icon">◈ EDUCATION ◈</span></div>
 
-  <!-- PROYECTOS -->
-  <section id="proyectos">
-    <div class="section-label">04 // projects</div>
-    <h2 class="section-title">Proyectos</h2>
+  <!-- ══ FORMACIÓN ══ -->
+  <section class="section" id="education">
+    <div class="section-header">
+      <div class="section-tag">// education.log</div>
+      <h2 class="section-title">Forma<span>ción</span></h2>
+    </div>
+
+    <div class="edu-list">
+      <div class="edu-card">
+        <div>
+          <h3>MÁSTER EN CIBERSEGURIDAD</h3>
+          <p>Seguridad ofensiva y defensiva · DFIR · Incident Response · Análisis forense</p>
+        </div>
+        <div class="edu-year">2024 – 2025</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>GRADO EN INGENIERÍA INFORMÁTICA</h3>
+          <p>Sistemas · Redes · Programación · Base técnica sólida</p>
+        </div>
+        <div class="edu-year">2020 – 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="hud-divider"><span class="hud-divider-icon">◈ PROJECTS ◈</span></div>
+
+  <!-- ══ PROYECTOS ══ -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <div class="section-tag">// projects.db</div>
+      <h2 class="section-title">Pro<span>yectos</span></h2>
+    </div>
 
     <div class="projects-grid">
       <div class="project-card">
-        <h3>🚧 En construcción</h3>
-        <p>Próximamente añadiré writeups de CTFs, labs de Hack The Box y proyectos de análisis forense.</p>
-        <span class="project-tag">coming soon</span>
+        <div class="project-status">En construcción</div>
+        <h3>CTF WRITEUPS</h3>
+        <p>Resolución de retos de Hack The Box, TryHackMe y competiciones CTF. Documentación de técnicas y metodologías de ataque.</p>
       </div>
       <div class="project-card">
-        <h3>🚧 En construcción</h3>
-        <p>Análisis de malware y casos prácticos de incident response desarrollados durante el Máster.</p>
-        <span class="project-tag">coming soon</span>
+        <div class="project-status">En construcción</div>
+        <h3>DFIR LAB</h3>
+        <p>Casos prácticos de análisis forense digital e incident response desarrollados durante el Máster. Análisis de memoria, logs y artefactos.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-status">En construcción</div>
+        <h3>MALWARE ANALYSIS</h3>
+        <p>Análisis estático y dinámico de muestras de malware en entorno controlado. Documentación de comportamiento y IOCs.</p>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- DIVIDER -->
+  <div class="hud-divider"><span class="hud-divider-icon">◈ CONTACT ◈</span></div>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="section-label">05 // contact</div>
-    <h2 class="section-title">Contacto</h2>
+  <!-- ══ CONTACTO ══ -->
+  <section class="section" id="contact">
     <div class="contact-box">
-      <h3>¿Hablamos?</h3>
-      <p>Abierto a oportunidades en ciberseguridad, prácticas y colaboraciones.</p>
+      <h3>GET IN TOUCH</h3>
+      <p>Abierto a oportunidades en ciberseguridad,<br>prácticas y colaboraciones en España.</p>
       <div class="contact-links">
-        <a href="mailto:alexandrerm24@gmail.com" class="btn btn-primary">Email</a>
+        <a href="mailto:alexandrerm24@gmail.com" class="btn btn-green">Email</a>
         <a href="https://linkedin.com/in/alexandreramosmoreno" target="_blank" class="btn btn-outline">LinkedIn</a>
         <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="btn btn-outline">GitHub</a>
       </div>
@@ -525,60 +223,9 @@
   </section>
 
   <footer>
-    <p>© 2026 <span>Alexandre Ramos Moreno</span> · alexandrerm.dev</p>
+    <p>© 2026 &nbsp;<span>Alexandre Ramos Moreno</span>&nbsp; · &nbsp;alexandrerm.dev</p>
   </footer>
 
-  <script>
-    // TYPING EFFECT
-    const phrases = [
-      'DFIR & Incident Response_',
-      'Análisis Forense Digital_',
-      'Pentesting & Seguridad Ofensiva_',
-      'Blue Team | Red Team_'
-    ];
-    let pi = 0, ci = 0, deleting = false;
-    const el = document.getElementById('typing-text');
-
-    function type() {
-      const current = phrases[pi];
-      if (!deleting) {
-        el.textContent = current.slice(0, ++ci);
-        if (ci === current.length) { deleting = true; setTimeout(type, 1800); return; }
-      } else {
-        el.textContent = current.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
-      setTimeout(type, deleting ? 40 : 70);
-    }
-    type();
-
-    // CAROUSEL
-    const tools = [
-      { icon: '🐉', name: 'Kali Linux' },
-      { icon: '🦈', name: 'Wireshark' },
-      { icon: '💣', name: 'Metasploit' },
-      { icon: '🕷️', name: 'Burp Suite' },
-      { icon: '🔍', name: 'Nmap' },
-      { icon: '🛡️', name: 'Splunk' },
-      { icon: '🔐', name: 'OpenVAS' },
-      { icon: '🧠', name: 'Volatility' },
-      { icon: '🐍', name: 'Python' },
-      { icon: '🖥️', name: 'Linux' },
-      { icon: '📡', name: 'Snort' },
-      { icon: '🔎', name: 'Autopsy' },
-      { icon: '🌐', name: 'OSINT' },
-      { icon: '⚔️', name: 'Nessus' },
-    ];
-
-    const track = document.getElementById('carousel');
-    const doubled = [...tools, ...tools];
-    doubled.forEach(t => {
-      const card = document.createElement('div');
-      card.className = 'tool-card';
-      card.innerHTML = `<div class="tool-icon">${t.icon}</div><div class="tool-name">${t.name}</div>`;
-      track.appendChild(card);
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
