@@ -296,10 +296,20 @@ a:hover { color: #fff; text-shadow: 0 0 8px #00ffcc; }
 
 /* ── SECTIONS COMMON ── */
 section {
-  padding: 3rem 2rem;
+  padding: 5rem 2rem;
   border-bottom: 2px dashed #00ff9933;
   position: relative;
   z-index: 1;
+}
+
+.section-big-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  color: #00ffe7;
+  text-shadow: 0 0 8px #00ffe7;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
 }
 
 fieldset {
