@@ -782,6 +782,58 @@ a:hover { color:var(--t1); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
 }
+
+/* ── ACCORDION (proyectos expandibles) ── */
+.proj-card.accordion { cursor: pointer; }
+.proj-card.accordion .acc-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.proj-card.accordion .acc-detail {
+  display: none;
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+  padding-top: 12px;
+}
+.proj-card.accordion.open .acc-detail { display: block; }
+.acc-toggle {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--acc);
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .15s;
+}
+.proj-card.accordion:hover .acc-toggle { color: var(--t1); }
+.acc-toggle::after { content: '↓'; display: inline-block; transition: transform .2s; }
+.proj-card.accordion.open .acc-toggle::after { transform: rotate(180deg); }
+
+.acc-detail p {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.acc-detail strong { color: var(--t1); font-weight: 500; }
+
+/* project link */
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--acc);
+  border: 1px solid var(--border-2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-top: 2px;
+  transition: all .15s;
+}
+.proj-link:hover { background: var(--card); color: var(--t1); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -834,7 +886,9 @@ a:hover { color:var(--t1); }
         <span class="line2">Ciberseguridad</span>
       </h1>
       <p class="hero-desc">
-        Red &amp; Blue team. DFIR. Pentesting. Construyo herramientas, rompo cosas con permiso y aprendo cada día. Buscando mi primer rol profesional en seguridad.
+        Analista de ciberseguridad junior especializado en pentesting, análisis de vulnerabilidades y DFIR.<br>
+        Experiencia en entornos Linux, redes y automatización de herramientas de seguridad.<br>
+        Busco mi primera oportunidad profesional en seguridad ofensiva o SOC.
       </p>
 
       <div class="terminal" style="margin-bottom:40px">
@@ -920,48 +974,77 @@ a:hover { color:var(--t1); }
       <div class="proj-card" data-color="violet">
         <div class="proj-top">
           <span class="proj-num">01</span>
-          <span class="proj-tag">Completado</span>
+          <span class="proj-tag">Proyecto Final ASIR</span>
         </div>
-        <div class="proj-name">Pentesting Automatizado</div>
-        <p class="proj-desc">Herramienta de pentesting con generación automática de informes usando IA. Proyecto final de ASIR.</p>
+        <div class="proj-name">Pentesting Automatizado con IA</div>
+        <p class="proj-desc">Reduce el tiempo de reporting manual automatizando el flujo completo: escaneo → análisis → generación de informe. Desarrollo íntegro del sistema.</p>
         <div class="tags">
-          <span class="pill">Python</span>
-          <span class="pill">Bash</span>
-          <span class="pill">Flask</span>
-          <span class="pill">MySQL</span>
+          <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">Flask</span><span class="pill">MySQL</span>
         </div>
+        <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="proj-link">Ver en GitHub →</a>
       </div>
 
       <div class="proj-card" data-color="pink">
         <div class="proj-top">
           <span class="proj-num">02</span>
-          <span class="proj-tag">FCT</span>
+          <span class="proj-tag">FCT · Entorno real</span>
         </div>
         <div class="proj-name">Análisis de Vulnerabilidades</div>
-        <p class="proj-desc">Identificación y análisis de amenazas en entornos TI reales. Hardening de sistemas y control de accesos en practicum.</p>
+        <p class="proj-desc">Identificación de CVEs activos y amenazas en infraestructura TI real del Ayuntamiento de San Vicente del Raspeig. Hardening aplicado y documentación de riesgos.</p>
         <div class="tags">
-          <span class="pill">Nmap</span>
-          <span class="pill">Metasploit</span>
-          <span class="pill">OWASP</span>
+          <span class="pill">Nmap</span><span class="pill">Metasploit</span><span class="pill">OWASP</span><span class="pill">Hardening</span>
         </div>
       </div>
 
-      <div class="proj-card locked"
-        data-html='<div class="proj-top"><span class="proj-num">03</span><span class="proj-tag">Personal</span></div><div class="proj-name">CTF Writeups</div><p class="proj-desc">Resolución de retos en TryHackMe. PrivEsc, Recon, SSRF y técnicas de post-explotación documentadas.</p><div class="tags"><span class="pill">TryHackMe</span><span class="pill">Linux</span><span class="pill">PrivEsc</span></div>'>
-        <div class="locked-icon">🔒</div>
-        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card" data-color="green">
+        <div class="proj-top">
+          <span class="proj-num">03</span>
+          <span class="proj-tag">En progreso</span>
+        </div>
+        <div class="proj-name">CTF Writeups</div>
+        <p class="proj-desc">Resolución documentada de retos en TryHackMe: PrivEsc en Linux, Recon, SSRF y técnicas de post-explotación. Metodología documentada por escrito.</p>
+        <div class="tags">
+          <span class="pill">TryHackMe</span><span class="pill">Linux</span><span class="pill">PrivEsc</span><span class="pill">SSRF</span>
+        </div>
+        <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="proj-link">Ver perfil THM →</a>
       </div>
 
-      <div class="proj-card locked"
-        data-html='<div class="proj-top"><span class="proj-num">04</span><span class="proj-tag">Lab</span></div><div class="proj-name">DFIR Lab</div><p class="proj-desc">Análisis forense digital e incident response. Memoria, logs y artefactos maliciosos en entorno controlado.</p><div class="tags"><span class="pill">Volatility</span><span class="pill">Autopsy</span><span class="pill">Wireshark</span></div>'>
-        <div class="locked-icon">🔒</div>
-        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card accordion" data-color="violet">
+        <div class="acc-summary">
+          <div class="proj-top">
+            <span class="proj-num">04</span>
+            <span class="proj-tag">Lab personal</span>
+          </div>
+          <div class="proj-name">DFIR Lab</div>
+          <p class="proj-desc">Análisis forense digital e incident response en entorno controlado.</p>
+          <div class="tags">
+            <span class="pill">Volatility</span><span class="pill">Autopsy</span><span class="pill">Wireshark</span>
+          </div>
+          <span class="acc-toggle">Ver case study</span>
+        </div>
+        <div class="acc-detail">
+          <p><strong>Qué hice:</strong> análisis de volcados de memoria con Volatility para identificar procesos maliciosos, extracción de artefactos con Autopsy y análisis de tráfico con Wireshark.</p>
+          <p><strong>Resultado:</strong> documentación de IOCs, timeline del incidente y reporte de respuesta siguiendo metodología DFIR estándar.</p>
+        </div>
       </div>
 
-      <div class="proj-card locked"
-        data-html='<div class="proj-top"><span class="proj-num">05</span><span class="proj-tag">Lab</span></div><div class="proj-name">Malware Analysis</div><p class="proj-desc">Análisis estático y dinámico de muestras. Identificación de IOCs y comportamiento malicioso documentado.</p><div class="tags"><span class="pill">Ghidra</span><span class="pill">Python</span><span class="pill">Sandbox</span></div>'>
-        <div class="locked-icon">🔒</div>
-        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card accordion" data-color="pink">
+        <div class="acc-summary">
+          <div class="proj-top">
+            <span class="proj-num">05</span>
+            <span class="proj-tag">Lab personal</span>
+          </div>
+          <div class="proj-name">Malware Analysis</div>
+          <p class="proj-desc">Análisis estático y dinámico de muestras en sandbox aislado.</p>
+          <div class="tags">
+            <span class="pill">Ghidra</span><span class="pill">Python</span><span class="pill">Sandbox</span>
+          </div>
+          <span class="acc-toggle">Ver case study</span>
+        </div>
+        <div class="acc-detail">
+          <p><strong>Qué hice:</strong> análisis estático con Ghidra (desensamblado, strings sospechosas) y dinámico en sandbox aislado para observar comportamiento en tiempo real.</p>
+          <p><strong>Resultado:</strong> identificación de IOCs, clasificación de la muestra y documentación del comportamiento malicioso.</p>
+        </div>
       </div>
 
     </div>
@@ -981,8 +1064,9 @@ a:hover { color:var(--t1); }
           <li>Pentesting &amp; Ethical Hacking</li>
           <li>Nmap · Metasploit</li>
           <li>Burp Suite · OWASP</li>
-          <li>Wireshark</li>
+          <li>Wireshark · Análisis de tráfico</li>
           <li>CTF: PrivEsc · Recon · SSRF</li>
+          <li>Threat hunting básico</li>
         </ul>
       </div>
       <div class="skill-block">
@@ -991,8 +1075,9 @@ a:hover { color:var(--t1); }
           <li>Linux · Windows Server</li>
           <li>Docker · Proxmox · VirtualBox</li>
           <li>TCP/IP · VPN · Firewalls</li>
-          <li>Active Directory</li>
+          <li>Active Directory · IAM</li>
           <li>DNS · DHCP · ACL</li>
+          <li>Hardening de sistemas</li>
         </ul>
       </div>
       <div class="skill-block">
@@ -1002,6 +1087,7 @@ a:hover { color:var(--t1); }
           <li>SQL · PHP · Flask</li>
           <li>Git &amp; GitHub</li>
           <li>Automatización de procesos</li>
+          <li>Análisis de logs · SIEM básico</li>
         </ul>
       </div>
     </div>
@@ -1065,7 +1151,8 @@ a:hover { color:var(--t1); }
       <h2 class="s-title">Hablamos</h2>
     </div>
     <p class="contact-intro">
-      Abierto a oportunidades en ciberseguridad en España. Carnet B, disponibilidad para viajar, muchas ganas de crecer en un equipo técnico.
+      Disponible para posiciones junior en ciberseguridad — SOC Analyst, Pentester Junior o similar.<br>
+      Carnet B, disponibilidad para viajar y muchas ganas de crecer en un equipo técnico real.
     </p>
     <div class="contact-grid">
       <div class="c-row">
@@ -1120,19 +1207,11 @@ a:hover { color:var(--t1); }
   tick();
 })();
 
-/* LOCKED CARDS */
+/* ACCORDION CARDS */
 (function(){
-  function relock(card){
-    card.innerHTML='<div class="locked-icon">🔒</div><p class="locked-txt">Bloqueado<br>Clic para revelar</p>';
-    card.classList.add('locked');
-  }
-  document.querySelectorAll('.proj-card.locked').forEach(card=>{
-    card.addEventListener('click',function(){
-      const html=this.dataset.html;
-      if(!html)return;
-      this.classList.remove('locked');
-      this.innerHTML=html;
-      setTimeout(()=>relock(this),5000);
+  document.querySelectorAll('.proj-card.accordion').forEach(card=>{
+    card.addEventListener('click', function(){
+      this.classList.toggle('open');
     });
   });
 })();
