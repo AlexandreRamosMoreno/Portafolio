@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexandre Ramos Moreno | Ciberseguridad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+  <title>Alexandre Ramos Moreno · Ciberseguridad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- MATRIX CANVAS -->
-  <canvas id="matrix-canvas"></canvas>
-
-  <!-- ===================== NAV ===================== -->
+  <!-- ── NAV ── -->
   <header class="navbar sticky">
     <div class="navbar-container">
+      <h1 class="logo-title"><span class="accent">arm</span>://sec</h1>
       <button class="hamburger-btn" aria-label="Abrir menú">&#9776;</button>
-      <h1 class="logo-title glitch" data-text="✦ ARM://sec ✦">✦ ARM://sec ✦</h1>
       <nav class="main-nav">
         <ul class="nav-list">
           <li><a href="#presentacion">Inicio</a></li>
@@ -30,23 +27,24 @@
     </div>
   </header>
 
-  <!-- ===================== HERO ===================== -->
+  <!-- ── HERO ── -->
   <section class="hero-v2" id="presentacion">
     <div class="hero-container">
       <div class="hero-content">
-        <h1>👋 Hola, soy <span class="highlight">Alexandre Ramos</span></h1>
-        <p class="subtitle">Analista de Ciberseguridad</p>
+        <p class="eyebrow">Disponible para trabajar</p>
+        <h1>Hola, soy<br><span class="highlight">Alexandre Ramos</span></h1>
+        <p class="subtitle">Analista de Ciberseguridad · Valencia, España</p>
         <div class="terminal-box">
-          <pre>$ <span class="cmd">whoami</span> → <span class="typed-text"></span><span class="cursor-blink">█</span></pre>
+          <span class="cmd">$</span> whoami → <span class="typed-text"></span><span class="cursor-blink"></span>
         </div>
         <div class="hero-buttons">
-          <a href="#proyectos" class="pixel-btn">🚀 Ver Proyectos</a>
-          <a href="mailto:alexandrerm24@gmail.com" class="pixel-btn">📬 Contactar</a>
+          <a href="#proyectos" class="pixel-btn">Ver proyectos</a>
+          <a href="mailto:alexandrerm24@gmail.com" class="pixel-btn">Contactar</a>
         </div>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" aria-label="LinkedIn">in</a>
-          <a href="https://github.com/AlexandreRamosMoreno" target="_blank" aria-label="GitHub">GH</a>
-          <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" aria-label="TryHackMe">THM</a>
+          <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+          <a href="https://github.com/AlexandreRamosMoreno" target="_blank" aria-label="GitHub">GitHub</a>
+          <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" aria-label="TryHackMe">TryHackMe</a>
         </div>
       </div>
       <div class="hero-image">
@@ -59,35 +57,42 @@
 
   <main>
 
-    <!-- ===================== FORMACIÓN ===================== -->
+    <!-- ── FORMACIÓN ── -->
     <section id="titulos" class="retro-titles-section">
-      <h2 class="retro-section-title glitch" data-text="Formación">Formación</h2>
+      <div class="section-header">
+        <p class="section-label">Formación académica</p>
+        <h2 class="section-title">Títulos</h2>
+        <p class="section-sub">Especialización técnica en sistemas y seguridad</p>
+      </div>
       <div class="retro-cards-container">
         <div class="retro-card">
-          <h3>🎓 Esp. Ciberseguridad</h3>
+          <h3>Esp. Ciberseguridad</h3>
           <p>IES Pere Maria Orts<br><span class="card-year">2025 – 2026</span></p>
         </div>
         <div class="retro-card">
-          <h3>💻 ASIR</h3>
+          <h3>ASIR</h3>
           <p>IES Marcos Zaragoza<br>Administración en Redes y Sistemas<br><span class="card-year">2022 – 2024</span></p>
         </div>
         <div class="retro-card">
-          <h3>🖥️ SMR</h3>
+          <h3>SMR</h3>
           <p>IES Marcos Zaragoza<br>Sistemas Microinformáticos en Red<br><span class="card-year">2020 – 2022</span></p>
         </div>
       </div>
     </section>
 
-    <!-- ===================== PROYECTOS ===================== -->
+    <!-- ── PROYECTOS ── -->
     <section id="proyectos" class="matrix-section">
-      <h2 class="glitch matrix-title" data-text="PROYECTOS">PROYECTOS</h2>
+      <div class="section-header">
+        <p class="section-label">Trabajo técnico</p>
+        <h2 class="section-title">Proyectos</h2>
+        <p class="section-sub">Haz clic en los documentos bloqueados para revelarlos</p>
+      </div>
       <div class="matrix-grid">
 
         <div class="matrix-card unlocked">
-          <div class="lock-break"></div>
           <div class="project-content">
-            <h3 class="project-title">🛠️ Pentesting Automatizado</h3>
-            <p class="project-desc">Herramienta de pentesting automatizado con generación de informes de vulnerabilidades mediante IA y scripting.</p>
+            <h3 class="project-title">Pentesting Automatizado</h3>
+            <p class="project-desc">Herramienta de pentesting con generación de informes de vulnerabilidades mediante IA y scripting.</p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
               <span class="project-tag">Bash</span>
@@ -98,10 +103,9 @@
         </div>
 
         <div class="matrix-card unlocked">
-          <div class="lock-break"></div>
           <div class="project-content">
-            <h3 class="project-title">🔍 Análisis de Vulnerabilidades</h3>
-            <p class="project-desc">Identificación y análisis de amenazas activas en entornos TI. Hardening de sistemas y análisis de riesgos.</p>
+            <h3 class="project-title">Análisis de Vulnerabilidades</h3>
+            <p class="project-desc">Identificación y análisis de amenazas en entornos TI. Hardening de sistemas y análisis de riesgos.</p>
             <div class="project-tags">
               <span class="project-tag">Nmap</span>
               <span class="project-tag">Metasploit</span>
@@ -110,40 +114,41 @@
           </div>
         </div>
 
-        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">🚩 CTF Writeups</h3><p class="project-desc">Resolución de retos en TryHackMe. PrivEsc, Recon, SSRF y más técnicas documentadas.</p><div class="project-tags"><span class="project-tag">TryHackMe</span><span class="project-tag">Linux</span><span class="project-tag">PrivEsc</span></div></div>'>
-          <div class="classified-label">📁 DOCUMENTO CLASIFICADO</div>
+        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">CTF Writeups</h3><p class="project-desc">Resolución de retos en TryHackMe. PrivEsc, Recon, SSRF y más técnicas documentadas.</p><div class="project-tags"><span class="project-tag">TryHackMe</span><span class="project-tag">Linux</span><span class="project-tag">PrivEsc</span></div></div>'>
+          <div class="classified-label">Documento bloqueado — clic para revelar</div>
         </div>
 
-        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">🧠 DFIR Lab</h3><p class="project-desc">Análisis forense digital e incident response. Análisis de memoria, logs y artefactos maliciosos en entorno controlado.</p><div class="project-tags"><span class="project-tag">Volatility</span><span class="project-tag">Autopsy</span><span class="project-tag">Wireshark</span></div></div>'>
-          <div class="classified-label">📁 DOCUMENTO CLASIFICADO</div>
+        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">DFIR Lab</h3><p class="project-desc">Análisis forense digital e incident response. Análisis de memoria, logs y artefactos maliciosos en entorno controlado.</p><div class="project-tags"><span class="project-tag">Volatility</span><span class="project-tag">Autopsy</span><span class="project-tag">Wireshark</span></div></div>'>
+          <div class="classified-label">Documento bloqueado — clic para revelar</div>
         </div>
 
-        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">🦠 Malware Analysis</h3><p class="project-desc">Análisis estático y dinámico de muestras de malware. Identificación de IOCs y documentación de comportamiento.</p><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Ghidra</span><span class="project-tag">Sandbox</span></div></div>'>
-          <div class="classified-label">📁 DOCUMENTO CLASIFICADO</div>
+        <div class="matrix-card inactive" data-project-html='<div class="project-content"><h3 class="project-title">Malware Analysis</h3><p class="project-desc">Análisis estático y dinámico de muestras de malware. Identificación de IOCs y documentación de comportamiento.</p><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Ghidra</span><span class="project-tag">Sandbox</span></div></div>'>
+          <div class="classified-label">Documento bloqueado — clic para revelar</div>
         </div>
 
       </div>
-      <p class="matrix-hint">💡 Haz clic en los documentos clasificados para desbloquearlos</p>
+      <p class="matrix-hint">Los proyectos bloqueados se ocultan automáticamente tras 5 segundos</p>
     </section>
 
-    <!-- ===================== SKILLS ===================== -->
+    <!-- ── SKILLS ── -->
     <section id="skills" class="pacman-section">
-      <div class="pacman-title">
-        <h2> Habilidades Técnicas</h2>
+      <div class="section-header">
+        <p class="section-label">Competencias técnicas</p>
+        <h2 class="section-title">Habilidades</h2>
+        <p class="section-sub">Stack técnico y áreas de dominio</p>
       </div>
-
       <div class="skills-columns">
         <div class="skills-col">
-          <h3 class="skills-col-title">🔴 Seguridad Ofensiva</h3>
+          <h3 class="skills-col-title">Seguridad ofensiva</h3>
           <ul class="pacman-skill-list">
-            <li><span class="dot"></span>Pentesting & Ethical Hacking</li>
+            <li><span class="dot"></span>Pentesting &amp; Ethical Hacking</li>
             <li><span class="dot"></span>Nmap · Metasploit · OWASP</li>
             <li><span class="dot"></span>Wireshark · Burp Suite</li>
             <li><span class="dot"></span>CTF: PrivEsc · Recon · SSRF</li>
           </ul>
         </div>
         <div class="skills-col">
-          <h3 class="skills-col-title">🔵 Sistemas & Redes</h3>
+          <h3 class="skills-col-title">Sistemas &amp; Redes</h3>
           <ul class="pacman-skill-list">
             <li><span class="dot"></span>Linux (Debian/Ubuntu) · Windows Server</li>
             <li><span class="dot"></span>Docker · Proxmox · VirtualBox</li>
@@ -152,47 +157,49 @@
           </ul>
         </div>
         <div class="skills-col">
-          <h3 class="skills-col-title">🟢 Scripting & Dev</h3>
+          <h3 class="skills-col-title">Scripting &amp; Dev</h3>
           <ul class="pacman-skill-list">
             <li><span class="dot"></span>Python · Bash · PowerShell</li>
             <li><span class="dot"></span>SQL · PHP · Flask</li>
-            <li><span class="dot"></span>Git & GitHub</li>
+            <li><span class="dot"></span>Git &amp; GitHub</li>
             <li><span class="dot"></span>Automatización de procesos</li>
           </ul>
         </div>
       </div>
-
-
     </section>
 
-    <!-- ===================== EXPERIENCIA ===================== -->
+    <!-- ── EXPERIENCIA ── -->
     <section id="experiencia" class="metro-terminal">
-      <h2 class="section-big-title">Experiencia</h2>
+      <div class="section-header">
+        <p class="section-label">Trayectoria</p>
+        <h2 class="section-title">Experiencia</h2>
+        <p class="section-sub">Historial profesional y académico</p>
+      </div>
       <fieldset>
-        <legend>📜 Registro Profesional</legend>
+        <legend>Registro profesional</legend>
         <header class="metro-header">
           <div class="status-bar">
-            <span class="led-indicator power-on">● POWER ON</span>
-            <span class="led-indicator comm-active">● COMM ONLINE</span>
-            <span class="log-tag">OPERADOR: ARM | FECHA: 2026</span>
+            <span class="led-indicator power-on">● ONLINE</span>
+            <span class="led-indicator comm-active">● COMM ACTIVE</span>
           </div>
-          <div class="terminal-title">== HISTORIAL DE OPERACIONES ==</div>
+          <span class="log-tag">OPERADOR: ARM · 2026</span>
+          <div class="terminal-title">// HISTORIAL DE OPERACIONES</div>
         </header>
 
         <div class="mission-log">
 
-          <div class="log-entry unlocked">
+          <div class="log-entry">
             <div class="entry-header">
               <span class="entry-date">2025 – 2026</span>
-              <span class="entry-role">FCT – Ayuntamiento San Vicente del Raspeig</span>
+              <span class="entry-role">FCT · Ayuntamiento San Vicente del Raspeig</span>
             </div>
-            <div class="company">Departamento TI | Ciberseguridad</div>
-            <p class="entry-desc">Identificación y análisis de amenazas activas en entornos TI. Aplicación de metodologías de análisis de riesgos, hardening de sistemas y control de accesos.</p>
+            <div class="company">Departamento TI · Ciberseguridad</div>
+            <p class="entry-desc">Identificación y análisis de amenazas en entornos TI. Aplicación de metodologías de análisis de riesgos, hardening de sistemas y control de accesos.</p>
             <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-            <div class="entry-status">Estado: ✅ Completado</div>
+            <div class="entry-status">✓ Completado</div>
           </div>
 
-          <div class="log-entry unlocked">
+          <div class="log-entry">
             <div class="entry-header">
               <span class="entry-date">2022 – 2024</span>
               <span class="entry-role">Proyecto Final ASIR</span>
@@ -200,114 +207,111 @@
             <div class="company">Generador de Informes de Vulnerabilidades</div>
             <p class="entry-desc">Herramienta de pentesting automatizado con integración de IA. Reducción del tiempo de generación de informes mediante scripting en Python/Bash. Stack: Python, Bash, Flask, PHP, MySQL.</p>
             <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-            <div class="entry-status">Estado: ✅ Completado</div>
+            <div class="entry-status">✓ Completado</div>
           </div>
 
-          <div class="log-entry unlocked">
+          <div class="log-entry">
             <div class="entry-header">
               <span class="entry-date">2020 – 2022</span>
-              <span class="entry-role">FCT – Marcos Tonda</span>
+              <span class="entry-role">FCT · Marcos Tonda</span>
             </div>
             <div class="company">Departamento de Logística y Calidad</div>
             <p class="entry-desc">Gestión de documentación técnica, control de calidad y uso de herramientas informáticas para gestión de pedidos y facturación.</p>
             <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
-            <div class="entry-status">Estado: ✅ Completado</div>
+            <div class="entry-status">✓ Completado</div>
           </div>
 
         </div>
 
         <footer class="terminal-footer">
-          <p>> Registro consultado exitosamente... <span class="cursor-blink">█</span></p>
+          <span class="cmd" style="font-family:var(--mono); color:var(--accent);">$</span> registro consultado exitosamente<span class="cursor-blink" style="margin-left:4px"></span>
         </footer>
       </fieldset>
     </section>
 
-    <!-- ===================== CONTACTO ===================== -->
+    <!-- ── CONTACTO ── -->
     <section id="contacto" class="contact-section">
-      <fieldset>
-        <legend>📡 Establecer Contacto</legend>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <span class="contact-icon">📧</span>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:alexandrerm24@gmail.com">alexandrerm24@gmail.com</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">📱</span>
-            <div>
-              <h4>Teléfono</h4>
-              <a href="tel:+34603824876">+34 603 82 48 76</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">💼</span>
-            <div>
-              <h4>LinkedIn</h4>
-              <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank">Alexandre Ramos Moreno</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">🐙</span>
-            <div>
-              <h4>GitHub</h4>
-              <a href="https://github.com/AlexandreRamosMoreno" target="_blank">AlexandreRamosMoreno</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">🎯</span>
-            <div>
-              <h4>TryHackMe</h4>
-              <a href="https://tryhackme.com/p/AlexandreRM" target="_blank">AlexandreRM</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">📍</span>
-            <div>
-              <h4>Ubicación</h4>
-              <p>Villajoyosa, Alicante · España</p>
-            </div>
+      <div class="section-header">
+        <p class="section-label">Contacto</p>
+        <h2 class="section-title">Hablamos</h2>
+        <p class="section-sub">Abierto a oportunidades en ciberseguridad</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:alexandrerm24@gmail.com">alexandrerm24@gmail.com</a>
           </div>
         </div>
-      </fieldset>
+        <div class="contact-item">
+          <span class="contact-icon">☎</span>
+          <div>
+            <h4>Teléfono</h4>
+            <a href="tel:+34603824876">+34 603 82 48 76</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">in</span>
+          <div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank">Alexandre Ramos Moreno</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">GH</span>
+          <div>
+            <h4>GitHub</h4>
+            <a href="https://github.com/AlexandreRamosMoreno" target="_blank">AlexandreRamosMoreno</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">⚑</span>
+          <div>
+            <h4>TryHackMe</h4>
+            <a href="https://tryhackme.com/p/AlexandreRM" target="_blank">AlexandreRM</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">◎</span>
+          <div>
+            <h4>Ubicación</h4>
+            <p>Villajoyosa, Alicante · España</p>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="mecha-footer damaged">
-    <div class="broken-overlay"></div>
-    <div class="footer-header cracked-text">
-      <span class="status-indicator red"></span>
-      [SISTEMA ARM://sec — STATUS: ONLINE]
-      <span class="status-indicator green"></span>
+  <!-- ── FOOTER ── -->
+  <footer class="mecha-footer">
+    <div class="footer-header">
+      <div class="footer-status">
+        <span class="status-dot"></span>
+        arm://sec — sistema online
+      </div>
     </div>
-    <div class="weld-lines"></div>
     <div class="footer-grid">
       <div class="footer-block">
         <h3>Ubicación</h3>
-        <p>📍 Villajoyosa, Alicante<br>España</p>
+        <p>Villajoyosa, Alicante</p>
+        <p>España</p>
       </div>
       <div class="footer-block">
         <h3>Enlaces</h3>
-        <a href="https://github.com/AlexandreRamosMoreno" target="_blank">⌥ GitHub</a>
-        <a href="mailto:alexandrerm24@gmail.com">✉ Email</a>
-        <a href="https://tryhackme.com/p/AlexandreRM" target="_blank">🎯 TryHackMe</a>
+        <a href="https://github.com/AlexandreRamosMoreno" target="_blank">GitHub</a>
+        <a href="mailto:alexandrerm24@gmail.com">Email</a>
+        <a href="https://tryhackme.com/p/AlexandreRM" target="_blank">TryHackMe</a>
       </div>
       <div class="footer-block">
         <h3>Disponibilidad</h3>
-        <p>✅ Open to Work<br>🚗 Carnet B<br>✈️ Disponible para viajar</p>
+        <p>Open to Work</p>
+        <p>Carnet B · Disponible para viajar</p>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="led-row">
-      <div class="led green"></div>
-      <div class="led yellow"></div>
-      <div class="led red"></div>
-    </div>
-    <div class="footer-bottom cracked-text">
-      &copy; 2026 Alexandre Ramos Moreno — alexandrerm.dev
+    <div class="footer-bottom">
+      &copy; 2026 Alexandre Ramos Moreno · alexandrerm.dev
     </div>
   </footer>
 
