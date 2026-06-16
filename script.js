@@ -1,38 +1,4 @@
-/* ============================================================
-   Alexandre Ramos Moreno | ARM://sec — script.js
-   ============================================================ */
-
-/* ── MATRIX RAIN ── */
-(function () {
-  const canvas = document.getElementById('matrix-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, cols, drops;
-  const chars = 'アカサタナハマヤ01アイウエ$#ABCXYZ'.split('');
-
-  function init() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    cols  = Math.floor(W / 14);
-    drops = Array(cols).fill(1);
-  }
-
-  function draw() {
-    ctx.fillStyle = 'rgba(0,0,0,0.05)';
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#00ff41';
-    ctx.font = '14px Share Tech Mono';
-    drops.forEach((y, i) => {
-      const ch = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(ch, i * 14, y * 14);
-      if (y * 14 > H && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
-    });
-  }
-
-  init();
-  window.addEventListener('resize', init);
-  setInterval(draw, 50);
-})();
+/* Alexandre Ramos Moreno | ARM://sec — script.js */
 
 /* ── TYPING EFFECT ── */
 (function () {
@@ -51,12 +17,12 @@
     const w = words[wi];
     if (!del) {
       el.textContent = w.slice(0, ++ci);
-      if (ci === w.length) { del = true; setTimeout(type, 1600); return; }
+      if (ci === w.length) { del = true; setTimeout(type, 1800); return; }
     } else {
       el.textContent = w.slice(0, --ci);
       if (ci === 0) { del = false; wi = (wi + 1) % words.length; }
     }
-    setTimeout(type, del ? 45 : 90);
+    setTimeout(type, del ? 40 : 85);
   }
   type();
 })();
@@ -72,10 +38,10 @@
   });
 })();
 
-/* ── CLASSIFIED CARDS UNLOCK ── */
+/* ── PROJECT CARDS UNLOCK ── */
 (function () {
   function relock(card) {
-    card.innerHTML = '<div class="classified-label">📁 DOCUMENTO CLASIFICADO</div>';
+    card.innerHTML = '<div class="classified-label">Documento bloqueado — clic para revelar</div>';
     card.classList.remove('unlocked');
     card.classList.add('inactive');
   }
@@ -84,11 +50,9 @@
     if (!card.classList.contains('inactive')) return;
     const html = card.dataset.projectHtml;
     if (!html) return;
-
     card.classList.remove('inactive');
     card.classList.add('unlocked');
-    card.innerHTML = '<div class="lock-break"></div>' + html;
-
+    card.innerHTML = html;
     setTimeout(() => relock(card), 5000);
   }
 
@@ -124,9 +88,9 @@
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        links.forEach(l => l.style.color = '');
+        links.forEach(l => l.removeAttribute('style'));
         const active = document.querySelector(`.nav-list a[href="#${e.target.id}"]`);
-        if (active) active.style.color = '#00ffe7';
+        if (active) active.style.color = 'var(--text-1)';
       }
     });
   }, { threshold: 0.4 });
