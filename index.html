@@ -260,8 +260,8 @@ nav{
 .acc-body strong{color:var(--t0);font-weight:500}
 
 /* ── EXPERIENCE ── */
-#experience .tl{position:relative;margin-top:52px;padding-left:26px}
-#experience .tl::before{
+.tl{position:relative;margin-top:52px;padding-left:26px}
+.tl::before{
   content:'';position:absolute;left:5px;top:10px;bottom:0;
   width:1px;background:linear-gradient(180deg,var(--acc),rgba(124,106,247,.1))
 }
@@ -366,12 +366,12 @@ footer{
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <span class="nav-logo"><em>ARM</em></span>
+    <span class="nav-logo"><em>arm</em>://sec</span>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#formacion">Formación</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Proyectos</a>
-      <a href="#experience">Experiencia</a>
       <a href="#contact">Contacto</a>
     </div>
     <a href="mailto:alexandrerm24@gmail.com" class="nav-cta">Contactar</a>
@@ -445,6 +445,51 @@ footer{
           <div class="stat-lbl">Practicum en infraestructura TI real</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMACIÓN -->
+<section class="section" id="formacion">
+  <div class="s-inner">
+    <p class="s-tag">Educación</p>
+    <h2 class="s-title">Formación</h2>
+    <p class="s-sub">Titulación técnica progresiva en sistemas y ciberseguridad.</p>
+    <div class="tl" style="margin-top:52px">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">IES Pere Maria Orts</span>
+            <span class="tl-date">2025 – 2026</span>
+          </div>
+          <div class="tl-org">Curso de Especialización en Ciberseguridad</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">IES Marcos Zaragoza</span>
+            <span class="tl-date">2022 – 2024</span>
+          </div>
+          <div class="tl-org">Administración en Redes y Sistemas (ASIR)</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">IES Marcos Zaragoza</span>
+            <span class="tl-date">2020 – 2022</span>
+          </div>
+          <div class="tl-org">Sistemas Microinformáticos en Red (SMR)</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -595,79 +640,6 @@ footer{
             <p><strong>Análisis dinámico:</strong> ejecución en sandbox aislado, monitorización de llamadas al sistema, conexiones de red y modificaciones en registro/ficheros.</p>
             <p><strong>Resultado:</strong> identificación y documentación de IOCs, clasificación de la muestra y reporte de comportamiento listo para integración en SIEM.</p>
           </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section" id="experience">
-  <div class="s-inner">
-    <p class="s-tag">Trayectoria</p>
-    <h2 class="s-title">Experiencia</h2>
-    <p class="s-sub">Historial técnico relevante.</p>
-    <div class="tl">
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-meta">
-            <span class="tl-role">Técnico de Ciberseguridad — FCT</span>
-            <span class="tl-date">2025 – 2026</span>
-          </div>
-          <div class="tl-org">Ayuntamiento de San Vicente del Raspeig · Departamento TI</div>
-          <p class="tl-desc">
-            Trabajé en la identificación y análisis de amenazas activas sobre la infraestructura TI municipal.
-            <strong>Apliqué metodologías de análisis de riesgos</strong>, ejecuté tareas de hardening en servidores y endpoints,
-            y reforcé políticas de control de accesos e IAM. Elaboré documentación técnica de vulnerabilidades detectadas
-            con priorización por criticidad para el equipo interno.
-          </p>
-          <div class="tl-skills">
-            <span class="tag">Vulnerability Assessment</span><span class="tag">Hardening</span><span class="tag">IAM</span><span class="tag">Documentación técnica</span>
-          </div>
-          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="90%"></div></div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-meta">
-            <span class="tl-role">Proyecto Final ASIR — Desarrollo propio</span>
-            <span class="tl-date">2022 – 2024</span>
-          </div>
-          <div class="tl-org">Herramienta de Pentesting Automatizado con IA</div>
-          <p class="tl-desc">
-            Diseño e implementación completa de una herramienta que automatiza el flujo de trabajo de una auditoría:
-            escaneo con Nmap, análisis de resultados y <strong>generación automática de informes de vulnerabilidades</strong>
-            mediante integración con modelos de IA. Stack completo: Python · Bash · Flask · PHP · MySQL.
-          </p>
-          <div class="tl-skills">
-            <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Flask</span><span class="tag">Automatización</span><span class="tag">IA</span>
-          </div>
-          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="100%"></div></div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-meta">
-            <span class="tl-role">Técnico Informático — FCT</span>
-            <span class="tl-date">2020 – 2022</span>
-          </div>
-          <div class="tl-org">Marcos Tonda · Departamento de Logística y Calidad</div>
-          <p class="tl-desc">
-            Soporte técnico y gestión de sistemas informáticos en entorno empresarial.
-            <strong>Gestión de documentación técnica y control de calidad</strong>, uso de herramientas de ERP
-            para gestión de pedidos y facturación. Primera experiencia en entorno profesional real.
-          </p>
-          <div class="tl-skills">
-            <span class="tag">Soporte TI</span><span class="tag">ERP</span><span class="tag">Documentación</span>
-          </div>
-          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="70%"></div></div>
         </div>
       </div>
 
