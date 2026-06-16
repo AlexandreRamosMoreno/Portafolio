@@ -6,905 +6,891 @@
 <title>Alexandre Ramos — Ciberseguridad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ─────────────── TOKENS ─────────────── */
 :root {
-  --bg:        #080A0F;
-  --surface:   #0D1117;
-  --surface-2: #161B22;
-  --border:    #21262D;
-  --border-2:  #30363D;
-  --text-1:    #E6EDF3;
-  --text-2:    #8B949E;
-  --text-3:    #484F58;
-  --accent:    #58A6FF;
-  --accent-dim:#1F6FEB22;
-  --green:     #3FB950;
-  --sans:      'Inter', system-ui, sans-serif;
-  --mono:      'Source Code Pro', 'JetBrains Mono', monospace;
-  --max:       760px;
-  --r:         6px;
-  --r-lg:      12px;
+  --bg:       #0C0C0E;
+  --panel:    #111115;
+  --card:     #16161B;
+  --border:   #222228;
+  --border-2: #2E2E38;
+  --t1:       #F0EEF8;
+  --t2:       #9090A8;
+  --t3:       #484858;
+  --acc:      #A78BFA;   /* violeta suave */
+  --acc2:     #F472B6;   /* rosa */
+  --acc3:     #34D399;   /* verde menta */
+  --mono:     'JetBrains Mono', monospace;
+  --display:  'Syne', sans-serif;
+  --body:     'Inter', system-ui, sans-serif;
 }
 
-/* ─────────────── RESET ─────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:15px; }
-
+html { scroll-behavior:smooth; }
 body {
-  font-family: var(--sans);
+  font-family: var(--body);
   background: var(--bg);
-  color: var(--text-1);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  color: var(--t1);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:var(--acc); text-decoration:none; }
+a:hover { color:var(--t1); }
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-thumb { background:var(--border-2); }
+
+/* ── LAYOUT ── */
+.wrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border-2); border-radius:2px; }
-
-/* ─────────────── NAV ─────────────── */
-nav {
+/* ── SIDEBAR ── */
+.sidebar {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  height: 56px;
-  background: rgba(8,10,15,0.8);
-  backdrop-filter: blur(12px) saturate(180%);
-  border-bottom: 1px solid var(--border);
+  top: 0; left: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
   display: flex;
-  align-items: center;
-  padding: 0 24px;
+  flex-direction: column;
+  padding: 40px 28px;
+  overflow-y: auto;
 }
 
-.nav-inner {
-  max-width: calc(var(--max) + 120px);
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
-.nav-logo {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-1);
-  letter-spacing: -0.01em;
-}
-.nav-logo span { color: var(--accent); }
-
-.nav-links {
-  display: flex;
-  gap: 4px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 13px;
-  color: var(--text-2);
-  padding: 4px 10px;
-  border-radius: var(--r);
-  transition: color .15s, background .15s;
-}
-.nav-links a:hover {
-  color: var(--text-1);
-  background: var(--surface-2);
-  text-decoration: none;
+.sidebar-name {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
-.nav-cta {
+.sidebar-role {
   font-size: 12px;
-  font-weight: 500;
-  padding: 5px 14px;
-  border-radius: var(--r);
-  background: var(--accent);
-  color: #fff !important;
-  transition: opacity .15s;
-}
-.nav-cta:hover { opacity: .85; text-decoration: none !important; }
-
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text-2);
-  font-size: 18px;
-  cursor: pointer;
-  padding: 4px;
+  color: var(--t2);
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
-/* ─────────────── HERO ─────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--acc3);
+  background: #34D39914;
+  border: 1px solid #34D39930;
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 32px;
+}
+.status-pip {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--acc3);
+  animation: pip 2s ease-in-out infinite;
+}
+@keyframes pip { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+/* Sidebar nav */
+.sidebar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 32px;
+}
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--t2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all .15s;
+}
+.sidebar-nav a:hover {
+  background: var(--card);
+  color: var(--t1);
+}
+.sidebar-nav a .nav-icon {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+  width: 16px;
+  text-align: center;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0 24px;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--t3);
+  padding: 6px 0;
+  transition: color .15s;
+  border-bottom: 1px solid var(--border);
+}
+.social-link:last-child { border-bottom: none; }
+.social-link:hover { color: var(--t1); }
+.social-link span { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+
+.sidebar-location {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+  margin-top: 20px;
+}
+
+/* ── MAIN ── */
+.main {
+  grid-column: 2;
+  padding: 0;
+}
+
+/* ── HERO ── */
 .hero {
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 96px 24px 64px;
+  padding: 80px 60px;
   border-bottom: 1px solid var(--border);
   position: relative;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, #1F6FEB18 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hero-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--green);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.hero-label::before {
-  content: '';
-  width: 16px;
-  height: 1px;
-  background: var(--green);
-  display: inline-block;
-}
-
-.hero h1 {
-  font-size: clamp(38px, 7vw, 60px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.07;
-  color: var(--text-1);
-  margin-bottom: 8px;
-}
-
-.hero-role {
-  font-family: var(--mono);
-  font-size: clamp(13px, 2vw, 16px);
-  color: var(--text-2);
-  margin-bottom: 40px;
-  letter-spacing: -0.01em;
-}
-.hero-role .accent { color: var(--accent); }
-
-/* Terminal prompt */
-.prompt-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 16px 20px;
-  margin-bottom: 44px;
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--text-2);
-  position: relative;
-}
-.prompt-box::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 20px; right: 20px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: .35;
-}
-.prompt-line { display: flex; align-items: center; gap: 8px; }
-.prompt-dollar { color: var(--text-3); user-select: none; }
-.prompt-cmd { color: var(--accent); }
-.prompt-output { color: var(--text-1); }
-.caret {
-  display: inline-block;
-  width: 8px; height: 16px;
-  background: var(--accent);
-  vertical-align: middle;
-  opacity: .9;
-  animation: blink 1.1s steps(1) infinite;
-}
-@keyframes blink { 0%,49%{opacity:.9} 50%,100%{opacity:0} }
-
-/* CTA row */
-.hero-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 18px;
-  border-radius: var(--r);
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all .15s;
-  text-decoration: none !important;
-}
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-.btn-primary:hover { background: #79BBFF; border-color: #79BBFF; }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-1);
-  border-color: var(--border-2);
-}
-.btn-ghost:hover { background: var(--surface-2); border-color: var(--border-2); }
-
-/* Social chips */
-.hero-links {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.chip {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 4px 12px;
-  transition: all .15s;
-}
-.chip:hover {
-  color: var(--text-1);
-  border-color: var(--border-2);
-  background: var(--surface-2);
-  text-decoration: none;
-}
-
-/* ─────────────── SECTIONS SHELL ─────────────── */
-.section {
-  padding: 80px 24px;
-  border-bottom: 1px solid var(--border);
-}
-
-.section-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-}
-
-.section-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: 8px;
-}
-
-.section-title {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text-1);
-  margin-bottom: 4px;
-}
-
-.section-desc {
-  font-size: 14px;
-  color: var(--text-2);
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-/* ─────────────── FORMACIÓN ─────────────── */
-.edu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
   overflow: hidden;
 }
 
-.edu-item {
-  background: var(--surface);
-  padding: 20px 24px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid var(--border);
-  transition: background .15s;
-}
-.edu-item:last-child { border-bottom: none; }
-.edu-item:hover { background: var(--surface-2); }
-
-.edu-info {}
-.edu-degree {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-1);
-  margin-bottom: 2px;
-}
-.edu-school {
-  font-size: 13px;
-  color: var(--text-2);
+.hero-bg-text {
+  position: absolute;
+  bottom: -40px;
+  right: -20px;
+  font-family: var(--display);
+  font-size: clamp(120px, 18vw, 220px);
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
 }
 
-.edu-badge {
+.hero-eyebrow {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--text-3);
-  white-space: nowrap;
-  padding: 2px 8px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface-2);
-  flex-shrink: 0;
-  margin-top: 3px;
+  color: var(--acc);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
-/* ─────────────── PROYECTOS ─────────────── */
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.hero-name {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--t1);
+  margin-bottom: 20px;
 }
 
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: border-color .2s, background .2s;
-}
-.project-card:hover {
-  border-color: var(--border-2);
-  background: var(--surface-2);
+.hero-name .line2 {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--t3);
 }
 
-.project-card.locked {
-  cursor: pointer;
-  border-style: dashed;
-  align-items: center;
-  justify-content: center;
-  min-height: 140px;
-  text-align: center;
-}
-.project-card.locked:hover {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-}
-
-.locked-label {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-3);
-  line-height: 1.6;
-}
-.project-card.locked:hover .locked-label { color: var(--accent); }
-
-.project-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.project-icon {
-  width: 32px; height: 32px;
-  border-radius: var(--r);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero-desc {
   font-size: 15px;
-  flex-shrink: 0;
+  color: var(--t2);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 40px;
 }
 
-.project-status {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 999px;
-  border: 1px solid var(--green);
-  color: var(--green);
-  white-space: nowrap;
-  margin-top: 2px;
+/* Terminal */
+.terminal {
+  background: var(--card);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 500px;
+  margin-bottom: 48px;
 }
-
-.project-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-1);
-}
-
-.project-desc {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.55;
-  flex: 1;
-}
-
-.tag-row {
+.terminal-bar {
+  background: var(--border);
+  padding: 10px 16px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-top: auto;
+  align-items: center;
+  gap: 7px;
+}
+.dot-r { width:10px; height:10px; border-radius:50%; background:#FF5F57; }
+.dot-y { width:10px; height:10px; border-radius:50%; background:#FFBD2E; }
+.dot-g { width:10px; height:10px; border-radius:50%; background:#28C840; }
+.terminal-body { padding: 16px 20px; }
+.t-line { font-family: var(--mono); font-size: 12px; display: flex; gap: 10px; margin-bottom: 6px; }
+.t-line:last-child { margin-bottom: 0; }
+.t-prompt { color: var(--acc); }
+.t-text { color: var(--t2); }
+.t-out { color: var(--t1); }
+.t-cursor {
+  display: inline-block; width: 7px; height: 13px;
+  background: var(--acc); vertical-align: middle;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+.hero-ctas { display:flex; gap:10px; flex-wrap:wrap; }
+.btn {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-acc {
+  background: var(--acc);
+  color: #0C0C0E;
+  border-color: var(--acc);
+}
+.btn-acc:hover { background: #C4B5FD; border-color:#C4B5FD; color:#0C0C0E; }
+.btn-outline {
+  background: transparent;
+  color: var(--t1);
+  border-color: var(--border-2);
+}
+.btn-outline:hover { background: var(--card); }
+
+/* ── SECTION SHELL ── */
+.section {
+  padding: 72px 60px;
+  border-bottom: 1px solid var(--border);
 }
 
-.tag {
+.s-head {
+  margin-bottom: 40px;
+}
+.s-label {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--text-3);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 2px 7px;
+  color: var(--t3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.s-title {
+  font-family: var(--display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.s-sub {
+  font-size: 14px;
+  color: var(--t2);
 }
 
-.hint {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  margin-top: 14px;
-  text-align: center;
-}
-
-/* ─────────────── SKILLS ─────────────── */
-.skills-grid {
+/* ── FORMACIÓN ── */
+.edu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
-.skill-block {
-  background: var(--surface);
+.edu-card {
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  border-radius: 12px;
+  padding: 22px;
+  transition: border-color .2s;
+  position: relative;
+  overflow: hidden;
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
+  opacity: 0;
+  transition: opacity .2s;
+}
+.edu-card:hover { border-color: var(--border-2); }
+.edu-card:hover::before { opacity: 1; }
+
+.edu-year {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--acc);
+  margin-bottom: 10px;
+}
+.edu-degree {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.edu-school {
+  font-size: 12px;
+  color: var(--t2);
+}
+
+/* ── PROYECTOS ── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.proj-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.proj-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.proj-card.locked {
+  cursor: pointer;
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  text-align: center;
+  gap: 8px;
+}
+.proj-card.locked:hover {
+  border-color: var(--acc);
+  background: #A78BFA0A;
+}
+.locked-icon { font-size: 22px; opacity: .4; }
+.locked-txt {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+  line-height: 1.7;
+}
+.proj-card.locked:hover .locked-txt { color: var(--acc); }
+
+/* Color accent strip per card */
+.proj-card[data-color="violet"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--acc);
+  opacity: .5;
+}
+.proj-card[data-color="pink"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--acc2);
+  opacity: .5;
+}
+.proj-card[data-color="green"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--acc3);
+  opacity: .5;
+}
+
+.proj-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.proj-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+.proj-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  color: var(--t3);
+}
+
+.proj-name {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: -0.01em;
+}
+.proj-desc {
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.6;
+  flex: 1;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+}
+.pill {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t3);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+/* ── SKILLS ── */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.skill-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   padding: 20px;
 }
-
-.skill-block-title {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-2);
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
+.skill-title {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
-
 .skill-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 }
-
 .skill-list li {
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-2);
+  font-size: 11px;
+  color: var(--t2);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .skill-list li::before {
   content: '';
-  width: 4px; height: 4px;
+  width: 3px; height: 3px;
   border-radius: 50%;
-  background: var(--accent);
-  opacity: .5;
+  background: var(--acc);
+  opacity: .6;
   flex-shrink: 0;
 }
 
-/* ─────────────── EXPERIENCIA ─────────────── */
-.timeline {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.timeline::before {
+/* ── EXPERIENCIA ── */
+.tl { display: flex; flex-direction: column; gap: 0; position: relative; }
+.tl::before {
   content: '';
   position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 0;
+  left: 0; top: 8px; bottom: 0;
   width: 1px;
   background: var(--border);
 }
 
 .tl-item {
   display: flex;
-  gap: 24px;
-  padding-bottom: 40px;
+  gap: 28px;
+  padding-bottom: 36px;
   position: relative;
 }
 .tl-item:last-child { padding-bottom: 0; }
 
-.tl-dot-wrap {
+.tl-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-shrink: 0;
   position: relative;
   z-index: 1;
 }
-
 .tl-dot {
-  width: 15px; height: 15px;
+  width: 9px; height: 9px;
   border-radius: 50%;
-  background: var(--surface);
+  background: var(--bg);
   border: 2px solid var(--border-2);
-  margin-top: 3px;
+  margin-top: 5px;
   transition: border-color .2s;
+  flex-shrink: 0;
 }
-.tl-item:hover .tl-dot { border-color: var(--accent); }
+.tl-item:hover .tl-dot { border-color: var(--acc); }
 
 .tl-body {
   flex: 1;
-  background: var(--surface);
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 20px 22px;
+  border-radius: 12px;
+  padding: 20px 24px;
   transition: border-color .2s;
 }
 .tl-item:hover .tl-body { border-color: var(--border-2); }
 
-.tl-meta {
+.tl-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
-
 .tl-role {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-1);
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
 }
-
 .tl-date {
   font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
+  font-size: 10px;
+  color: var(--t3);
+  white-space: nowrap;
+  margin-top: 4px;
 }
-
 .tl-org {
   font-size: 12px;
-  color: var(--text-2);
-  margin-bottom: 12px;
+  color: var(--acc);
+  margin-bottom: 10px;
 }
-
 .tl-desc {
   font-size: 13px;
-  color: var(--text-2);
+  color: var(--t2);
   line-height: 1.65;
   margin-bottom: 14px;
 }
-
-.tl-bar-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 .tl-bar {
-  flex: 1;
   height: 2px;
-  background: var(--surface-2);
+  background: var(--border);
   border-radius: 2px;
   overflow: hidden;
 }
-.tl-bar-fill {
+.tl-fill {
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
   border-radius: 2px;
-  opacity: .5;
   transition: width 1.4s cubic-bezier(.16,1,.3,1);
 }
-.tl-bar-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  white-space: nowrap;
+
+/* ── CONTACTO ── */
+.contact-intro {
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 500px;
 }
 
-/* ─────────────── CONTACTO ─────────────── */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  margin-bottom: 36px;
 }
-
-.contact-row {
-  background: var(--surface);
+.c-row {
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 16px 20px;
+  border-radius: 10px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   gap: 14px;
   transition: border-color .15s;
 }
-.contact-row:hover { border-color: var(--border-2); }
-
-.contact-icon-wrap {
-  width: 36px; height: 36px;
-  border-radius: var(--r);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.c-row:hover { border-color: var(--border-2); }
+.c-icon {
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--text-2);
+  color: var(--t3);
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
+.c-label { font-size: 11px; color: var(--t3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+.c-val { font-size: 13px; color: var(--t1); }
+.c-val a { color: var(--t1); }
+.c-val a:hover { color: var(--acc); }
 
-.contact-label {
-  font-size: 11px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  margin-bottom: 2px;
-}
-.contact-val {
-  font-size: 13px;
-  color: var(--text-1);
-}
-.contact-val a {
-  color: var(--text-1);
-}
-.contact-val a:hover { color: var(--accent); text-decoration: none; }
-
-/* ─────────────── FOOTER ─────────────── */
-footer {
-  padding: 28px 24px;
+/* ── FOOTER ── */
+.footer {
+  padding: 28px 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 12px;
-}
-
-.footer-inner {
-  max-width: calc(var(--max) + 120px);
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
 }
-
 .footer-logo {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-3);
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--t3);
 }
-.footer-logo span { color: var(--accent); }
+.footer-right { font-family: var(--mono); font-size: 11px; color: var(--t3); }
 
-.footer-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-}
-.status-pip {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pip 2.4s ease-in-out infinite;
-}
-@keyframes pip { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-.footer-copy {
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-/* ─────────────── RESPONSIVE ─────────────── */
-@media (max-width: 700px) {
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
-  .hamburger { display: block; }
-
-  .hero h1 { font-size: 34px; }
-
-  .projects-grid { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: 1fr; }
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .wrapper { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .avatar { margin-bottom: 0; width: 48px; height: 48px; font-size: 16px; }
+  .sidebar-name { font-size: 16px; margin-bottom: 0; }
+  .sidebar-role { display: none; }
+  .status-badge { margin-bottom: 0; }
+  .sidebar-nav, .social-links, .sidebar-divider, .sidebar-location { display: none; }
+  .main { grid-column: 1; }
+  .hero, .section { padding: 48px 24px; }
+  .edu-grid, .skills-layout { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
-
-  .tl-item { gap: 14px; }
-  .timeline::before { left: 6px; }
-
-  .edu-item { flex-direction: column; gap: 6px; }
-  .edu-badge { align-self: flex-start; }
-
-  .hero-actions { flex-direction: column; }
-  .btn { justify-content: center; }
+  .footer { padding: 24px; }
+  .hero-bg-text { font-size: 80px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
 }
 </style>
 </head>
 <body>
+<div class="wrapper">
 
-<!-- ── NAV ── -->
-<nav>
-  <div class="nav-inner">
-    <span class="nav-logo"><span>arm</span>://sec</span>
-    <ul class="nav-links">
-      <li><a href="#formacion">Formación</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experiencia">Experiencia</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <a href="mailto:alexandrerm24@gmail.com" class="btn btn-primary nav-cta">Contactar</a>
-    <button class="hamburger" aria-label="Menú">☰</button>
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="avatar">AR</div>
+  <div class="sidebar-name">Alexandre<br>Ramos Moreno</div>
+  <div class="sidebar-role">Analista de Ciberseguridad<br>Red Team · Blue Team · DFIR</div>
+  <div class="status-badge"><span class="status-pip"></span>Open to work</div>
+
+  <ul class="sidebar-nav">
+    <li><a href="#formacion"><span class="nav-icon">01</span>Formación</a></li>
+    <li><a href="#proyectos"><span class="nav-icon">02</span>Proyectos</a></li>
+    <li><a href="#skills"><span class="nav-icon">03</span>Skills</a></li>
+    <li><a href="#experiencia"><span class="nav-icon">04</span>Experiencia</a></li>
+    <li><a href="#contacto"><span class="nav-icon">05</span>Contacto</a></li>
+  </ul>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" class="social-link">
+      <span>in</span> LinkedIn
+    </a>
+    <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="social-link">
+      <span>gh</span> GitHub
+    </a>
+    <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="social-link">
+      <span>thm</span> TryHackMe
+    </a>
+    <a href="mailto:alexandrerm24@gmail.com" class="social-link">
+      <span>✉</span> alexandrerm24@gmail.com
+    </a>
   </div>
-</nav>
 
-<!-- ── HERO ── -->
-<section class="hero" id="inicio">
-  <div class="hero-inner">
-    <p class="hero-label">Open to work · Valencia, España</p>
-    <h1>Alexandre<br>Ramos Moreno</h1>
-    <p class="hero-role"><span class="accent">Analista de Ciberseguridad</span> · Red &amp; Blue Team · DFIR</p>
+  <div class="sidebar-location">📍 Villajoyosa, Alicante</div>
+</aside>
 
-    <div class="prompt-box">
-      <div class="prompt-line">
-        <span class="prompt-dollar">$</span>
-        <span class="prompt-cmd">whoami</span>
+<!-- ── MAIN ── -->
+<main class="main">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-text">SEC</div>
+    <p class="hero-eyebrow">arm://sec · portfolio</p>
+    <h1 class="hero-name">
+      Analista de<br>
+      <span class="line2">Ciberseguridad</span>
+    </h1>
+    <p class="hero-desc">
+      Red &amp; Blue team. DFIR. Pentesting. Construyo herramientas, rompo cosas con permiso y aprendo cada día. Buscando mi primer rol profesional en seguridad.
+    </p>
+
+    <div class="terminal" style="margin-bottom:40px">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
       </div>
-      <div class="prompt-line" style="margin-top:6px">
-        <span class="prompt-dollar">&gt;</span>
-        <span class="prompt-output" id="typed"></span><span class="caret" id="caret"></span>
+      <div class="terminal-body">
+        <div class="t-line">
+          <span class="t-prompt">~</span>
+          <span class="t-text">whoami</span>
+        </div>
+        <div class="t-line">
+          <span class="t-prompt">›</span>
+          <span class="t-out" id="typed"></span><span class="t-cursor"></span>
+        </div>
       </div>
     </div>
 
-    <div class="hero-actions">
-      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
-      <a href="#contacto" class="btn btn-ghost">Contactar</a>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn btn-acc">Ver proyectos</a>
+      <a href="#contacto" class="btn btn-outline">Contactar</a>
     </div>
+  </section>
 
-    <div class="hero-links">
-      <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" class="chip">LinkedIn</a>
-      <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="chip">GitHub</a>
-      <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="chip">TryHackMe</a>
+  <!-- FORMACIÓN -->
+  <section class="section" id="formacion">
+    <div class="s-head">
+      <p class="s-label">01 · Formación</p>
+      <h2 class="s-title">Titulación académica</h2>
+      <p class="s-sub">Especialización progresiva en sistemas y seguridad.</p>
     </div>
-  </div>
-</section>
-
-<!-- ── FORMACIÓN ── -->
-<section class="section" id="formacion">
-  <div class="section-inner">
-    <p class="section-eyebrow">01 · Formación</p>
-    <h2 class="section-title">Titulación académica</h2>
-    <p class="section-desc">Especialización técnica progresiva en sistemas, redes y seguridad.</p>
-
-    <div class="edu-list">
-      <div class="edu-item">
-        <div class="edu-info">
-          <div class="edu-degree">Especialización en Ciberseguridad</div>
-          <div class="edu-school">IES Pere Maria Orts i Bosch</div>
-        </div>
-        <span class="edu-badge">2025 – 2026</span>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2025 – 2026</div>
+        <div class="edu-degree">Esp. en Ciberseguridad</div>
+        <div class="edu-school">IES Pere Maria Orts</div>
       </div>
-      <div class="edu-item">
-        <div class="edu-info">
-          <div class="edu-degree">ASIR — Administración de Redes y Sistemas</div>
-          <div class="edu-school">IES Marcos Zaragoza</div>
-        </div>
-        <span class="edu-badge">2022 – 2024</span>
+      <div class="edu-card">
+        <div class="edu-year">2022 – 2024</div>
+        <div class="edu-degree">ASIR — Administración de Redes y Sistemas</div>
+        <div class="edu-school">IES Marcos Zaragoza</div>
       </div>
-      <div class="edu-item">
-        <div class="edu-info">
-          <div class="edu-degree">SMR — Sistemas Microinformáticos en Red</div>
-          <div class="edu-school">IES Marcos Zaragoza</div>
-        </div>
-        <span class="edu-badge">2020 – 2022</span>
+      <div class="edu-card">
+        <div class="edu-year">2020 – 2022</div>
+        <div class="edu-degree">SMR — Sistemas Microinformáticos en Red</div>
+        <div class="edu-school">IES Marcos Zaragoza</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── PROYECTOS ── -->
-<section class="section" id="proyectos">
-  <div class="section-inner">
-    <p class="section-eyebrow">02 · Proyectos</p>
-    <h2 class="section-title">Trabajo técnico</h2>
-    <p class="section-desc">Proyectos académicos y personales. Clic en los bloqueados para ver el detalle.</p>
+  <!-- PROYECTOS -->
+  <section class="section" id="proyectos">
+    <div class="s-head">
+      <p class="s-label">02 · Proyectos</p>
+      <h2 class="s-title">Trabajo técnico</h2>
+      <p class="s-sub">Clic en los bloqueados para revelarlos — se cierran solos a los 5 segundos.</p>
+    </div>
+    <div class="proj-grid">
 
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-icon">⚙</div>
-          <span class="project-status">Completado</span>
+      <div class="proj-card" data-color="violet">
+        <div class="proj-top">
+          <span class="proj-num">01</span>
+          <span class="proj-tag">Completado</span>
         </div>
-        <div class="project-name">Pentesting Automatizado</div>
-        <p class="project-desc">Herramienta de pentesting con generación automática de informes de vulnerabilidades usando IA y scripting. Proyecto final ASIR.</p>
-        <div class="tag-row">
-          <span class="tag">Python</span>
-          <span class="tag">Bash</span>
-          <span class="tag">Flask</span>
-          <span class="tag">MySQL</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-icon">🔍</div>
-          <span class="project-status">Completado</span>
-        </div>
-        <div class="project-name">Análisis de Vulnerabilidades</div>
-        <p class="project-desc">Identificación y análisis de amenazas en entornos TI reales durante el practicum. Hardening y análisis de riesgos.</p>
-        <div class="tag-row">
-          <span class="tag">Nmap</span>
-          <span class="tag">Metasploit</span>
-          <span class="tag">OWASP</span>
+        <div class="proj-name">Pentesting Automatizado</div>
+        <p class="proj-desc">Herramienta de pentesting con generación automática de informes usando IA. Proyecto final de ASIR.</p>
+        <div class="tags">
+          <span class="pill">Python</span>
+          <span class="pill">Bash</span>
+          <span class="pill">Flask</span>
+          <span class="pill">MySQL</span>
         </div>
       </div>
 
-      <div class="project-card locked" data-html='<div class="project-top"><div class="project-icon">🚩</div><span class="project-status">En progreso</span></div><div class="project-name">CTF Writeups</div><p class="project-desc">Resolución de retos en TryHackMe. PrivEsc, Recon, SSRF y técnicas de post-explotación documentadas.</p><div class="tag-row"><span class="tag">TryHackMe</span><span class="tag">Linux</span><span class="tag">PrivEsc</span></div>'>
-        <p class="locked-label">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card" data-color="pink">
+        <div class="proj-top">
+          <span class="proj-num">02</span>
+          <span class="proj-tag">FCT</span>
+        </div>
+        <div class="proj-name">Análisis de Vulnerabilidades</div>
+        <p class="proj-desc">Identificación y análisis de amenazas en entornos TI reales. Hardening de sistemas y control de accesos en practicum.</p>
+        <div class="tags">
+          <span class="pill">Nmap</span>
+          <span class="pill">Metasploit</span>
+          <span class="pill">OWASP</span>
+        </div>
       </div>
 
-      <div class="project-card locked" data-html='<div class="project-top"><div class="project-icon">🧠</div><span class="project-status">Lab personal</span></div><div class="project-name">DFIR Lab</div><p class="project-desc">Análisis forense digital e incident response. Memoria, logs y artefactos maliciosos en entorno controlado.</p><div class="tag-row"><span class="tag">Volatility</span><span class="tag">Autopsy</span><span class="tag">Wireshark</span></div>'>
-        <p class="locked-label">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card locked"
+        data-html='<div class="proj-top"><span class="proj-num">03</span><span class="proj-tag">Personal</span></div><div class="proj-name">CTF Writeups</div><p class="proj-desc">Resolución de retos en TryHackMe. PrivEsc, Recon, SSRF y técnicas de post-explotación documentadas.</p><div class="tags"><span class="pill">TryHackMe</span><span class="pill">Linux</span><span class="pill">PrivEsc</span></div>'>
+        <div class="locked-icon">🔒</div>
+        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
       </div>
 
-      <div class="project-card locked" data-html='<div class="project-top"><div class="project-icon">🦠</div><span class="project-status">Lab personal</span></div><div class="project-name">Malware Analysis</div><p class="project-desc">Análisis estático y dinámico de muestras. Identificación de IOCs y documentación de comportamiento malicioso.</p><div class="tag-row"><span class="tag">Ghidra</span><span class="tag">Python</span><span class="tag">Sandbox</span></div>'>
-        <p class="locked-label">Bloqueado<br>Clic para revelar</p>
+      <div class="proj-card locked"
+        data-html='<div class="proj-top"><span class="proj-num">04</span><span class="proj-tag">Lab</span></div><div class="proj-name">DFIR Lab</div><p class="proj-desc">Análisis forense digital e incident response. Memoria, logs y artefactos maliciosos en entorno controlado.</p><div class="tags"><span class="pill">Volatility</span><span class="pill">Autopsy</span><span class="pill">Wireshark</span></div>'>
+        <div class="locked-icon">🔒</div>
+        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
+      </div>
+
+      <div class="proj-card locked"
+        data-html='<div class="proj-top"><span class="proj-num">05</span><span class="proj-tag">Lab</span></div><div class="proj-name">Malware Analysis</div><p class="proj-desc">Análisis estático y dinámico de muestras. Identificación de IOCs y comportamiento malicioso documentado.</p><div class="tags"><span class="pill">Ghidra</span><span class="pill">Python</span><span class="pill">Sandbox</span></div>'>
+        <div class="locked-icon">🔒</div>
+        <p class="locked-txt">Bloqueado<br>Clic para revelar</p>
       </div>
 
     </div>
-    <p class="hint">Los bloqueados se cierran solos tras 5 segundos</p>
-  </div>
-</section>
+  </section>
 
-<!-- ── SKILLS ── -->
-<section class="section" id="skills">
-  <div class="section-inner">
-    <p class="section-eyebrow">03 · Skills</p>
-    <h2 class="section-title">Stack técnico</h2>
-    <p class="section-desc">Herramientas y áreas de conocimiento.</p>
-
-    <div class="skills-grid">
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="s-head">
+      <p class="s-label">03 · Skills</p>
+      <h2 class="s-title">Stack técnico</h2>
+      <p class="s-sub">Herramientas y áreas de dominio.</p>
+    </div>
+    <div class="skills-layout">
       <div class="skill-block">
-        <div class="skill-block-title">Ofensiva</div>
+        <div class="skill-title">Seguridad ofensiva</div>
         <ul class="skill-list">
           <li>Pentesting &amp; Ethical Hacking</li>
           <li>Nmap · Metasploit</li>
@@ -914,7 +900,7 @@ footer {
         </ul>
       </div>
       <div class="skill-block">
-        <div class="skill-block-title">Sistemas &amp; Redes</div>
+        <div class="skill-title">Sistemas &amp; Redes</div>
         <ul class="skill-list">
           <li>Linux · Windows Server</li>
           <li>Docker · Proxmox · VirtualBox</li>
@@ -924,7 +910,7 @@ footer {
         </ul>
       </div>
       <div class="skill-block">
-        <div class="skill-block-title">Scripting</div>
+        <div class="skill-title">Scripting</div>
         <ul class="skill-list">
           <li>Python · Bash · PowerShell</li>
           <li>SQL · PHP · Flask</li>
@@ -933,184 +919,131 @@ footer {
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── EXPERIENCIA ── -->
-<section class="section" id="experiencia">
-  <div class="section-inner">
-    <p class="section-eyebrow">04 · Experiencia</p>
-    <h2 class="section-title">Trayectoria</h2>
-    <p class="section-desc">Historial profesional y académico relevante.</p>
-
-    <div class="timeline">
+  <!-- EXPERIENCIA -->
+  <section class="section" id="experiencia">
+    <div class="s-head">
+      <p class="s-label">04 · Experiencia</p>
+      <h2 class="s-title">Trayectoria</h2>
+      <p class="s-sub">Historial profesional y académico.</p>
+    </div>
+    <div class="tl">
 
       <div class="tl-item">
-        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-left"><div class="tl-dot"></div></div>
         <div class="tl-body">
-          <div class="tl-meta">
-            <span class="tl-role">Técnico en Prácticas — Ciberseguridad</span>
+          <div class="tl-header">
+            <span class="tl-role">Técnico en Prácticas · Ciberseguridad</span>
             <span class="tl-date">2025 – 2026</span>
           </div>
-          <div class="tl-org">Ayuntamiento de San Vicente del Raspeig · Departamento TI</div>
-          <p class="tl-desc">Identificación y análisis de amenazas en entornos TI reales. Aplicación de metodologías de análisis de riesgos, hardening de sistemas y control de accesos. FCT de la Esp. en Ciberseguridad.</p>
-          <div class="tl-bar-wrap">
-            <div class="tl-bar"><div class="tl-bar-fill" style="width:0%" data-w="90%"></div></div>
-            <span class="tl-bar-label">Completado</span>
-          </div>
+          <div class="tl-org">Ayuntamiento de San Vicente del Raspeig</div>
+          <p class="tl-desc">Identificación y análisis de amenazas en entornos TI reales. Hardening de sistemas, control de accesos y análisis de riesgos. FCT de la especialización en ciberseguridad.</p>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="90%"></div></div>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-left"><div class="tl-dot"></div></div>
         <div class="tl-body">
-          <div class="tl-meta">
+          <div class="tl-header">
             <span class="tl-role">Proyecto Final ASIR</span>
             <span class="tl-date">2022 – 2024</span>
           </div>
           <div class="tl-org">Generador de Informes de Vulnerabilidades con IA</div>
-          <p class="tl-desc">Herramienta de pentesting automatizado con integración de IA para generación de informes. Reducción significativa del tiempo de reporting mediante scripting en Python y Bash. Stack: Python · Bash · Flask · PHP · MySQL.</p>
-          <div class="tl-bar-wrap">
-            <div class="tl-bar"><div class="tl-bar-fill" style="width:0%" data-w="100%"></div></div>
-            <span class="tl-bar-label">Completado</span>
-          </div>
+          <p class="tl-desc">Herramienta de pentesting automatizado con integración de IA. Reducción del tiempo de reporting mediante scripting. Stack: Python · Bash · Flask · PHP · MySQL.</p>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="100%"></div></div>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-left"><div class="tl-dot"></div></div>
         <div class="tl-body">
-          <div class="tl-meta">
-            <span class="tl-role">Técnico en Prácticas — Logística y Calidad</span>
+          <div class="tl-header">
+            <span class="tl-role">Técnico en Prácticas · Logística y Calidad</span>
             <span class="tl-date">2020 – 2022</span>
           </div>
-          <div class="tl-org">Marcos Tonda · Departamento de Logística</div>
-          <p class="tl-desc">Gestión de documentación técnica, control de calidad y uso de herramientas informáticas para gestión de pedidos y facturación. FCT del ciclo SMR.</p>
-          <div class="tl-bar-wrap">
-            <div class="tl-bar"><div class="tl-bar-fill" style="width:0%" data-w="75%"></div></div>
-            <span class="tl-bar-label">Completado</span>
-          </div>
+          <div class="tl-org">Marcos Tonda</div>
+          <p class="tl-desc">Gestión de documentación técnica, control de calidad y herramientas informáticas para gestión de pedidos y facturación. FCT del ciclo SMR.</p>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="75%"></div></div>
         </div>
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── CONTACTO ── -->
-<section class="section" id="contacto">
-  <div class="section-inner">
-    <p class="section-eyebrow">05 · Contacto</p>
-    <h2 class="section-title">Hablamos</h2>
-    <p class="section-desc">Abierto a oportunidades en ciberseguridad en España. Carnet B, disponibilidad para viajar.</p>
-
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <div class="s-head">
+      <p class="s-label">05 · Contacto</p>
+      <h2 class="s-title">Hablamos</h2>
+    </div>
+    <p class="contact-intro">
+      Abierto a oportunidades en ciberseguridad en España. Carnet B, disponibilidad para viajar, muchas ganas de crecer en un equipo técnico.
+    </p>
     <div class="contact-grid">
-      <div class="contact-row">
-        <div class="contact-icon-wrap">✉</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-val"><a href="mailto:alexandrerm24@gmail.com">alexandrerm24@gmail.com</a></div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">✉</div>
+        <div><div class="c-label">Email</div><div class="c-val"><a href="mailto:alexandrerm24@gmail.com">alexandrerm24@gmail.com</a></div></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-icon-wrap">☎</div>
-        <div>
-          <div class="contact-label">Teléfono</div>
-          <div class="contact-val"><a href="tel:+34603824876">+34 603 82 48 76</a></div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">☎</div>
+        <div><div class="c-label">Teléfono</div><div class="c-val"><a href="tel:+34603824876">+34 603 82 48 76</a></div></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-icon-wrap">in</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-val"><a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank">Alexandre Ramos Moreno</a></div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">in</div>
+        <div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank">Alexandre Ramos Moreno</a></div></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-icon-wrap">GH</div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-val"><a href="https://github.com/AlexandreRamosMoreno" target="_blank">AlexandreRamosMoreno</a></div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">gh</div>
+        <div><div class="c-label">GitHub</div><div class="c-val"><a href="https://github.com/AlexandreRamosMoreno" target="_blank">AlexandreRamosMoreno</a></div></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-icon-wrap">⚑</div>
-        <div>
-          <div class="contact-label">TryHackMe</div>
-          <div class="contact-val"><a href="https://tryhackme.com/p/AlexandreRM" target="_blank">AlexandreRM</a></div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">⚑</div>
+        <div><div class="c-label">TryHackMe</div><div class="c-val"><a href="https://tryhackme.com/p/AlexandreRM" target="_blank">AlexandreRM</a></div></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-icon-wrap">◎</div>
-        <div>
-          <div class="contact-label">Ubicación</div>
-          <div class="contact-val">Villajoyosa, Alicante · España</div>
-        </div>
+      <div class="c-row">
+        <div class="c-icon">◎</div>
+        <div><div class="c-label">Ubicación</div><div class="c-val">Villajoyosa, Alicante · España</div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-inner">
-    <span class="footer-logo"><span>arm</span>://sec</span>
-    <div class="footer-status">
-      <span class="status-pip"></span>
-      sistema online
-    </div>
-    <span class="footer-copy">© 2026 Alexandre Ramos Moreno</span>
-  </div>
-</footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-logo">arm://sec</span>
+    <span class="footer-right">© 2026 Alexandre Ramos Moreno</span>
+  </footer>
+
+</main>
+</div>
 
 <script>
-/* ── TYPING ── */
+/* TYPING */
 (function(){
-  const el = document.getElementById('typed');
-  if (!el) return;
-  const words = [
-    'Analista de Ciberseguridad',
-    'Pentester & Red Team',
-    'Blue Team · DFIR',
-    'Alexandre Ramos Moreno'
-  ];
-  let wi=0, ci=0, del=false;
+  const el=document.getElementById('typed');
+  if(!el)return;
+  const words=['Analista de Ciberseguridad','Pentester · Red Team','Blue Team · DFIR','Alexandre Ramos Moreno'];
+  let wi=0,ci=0,del=false;
   function tick(){
     const w=words[wi];
-    if(!del){ el.textContent=w.slice(0,++ci); if(ci===w.length){del=true;setTimeout(tick,1800);return;} }
-    else{ el.textContent=w.slice(0,--ci); if(ci===0){del=false;wi=(wi+1)%words.length;} }
-    setTimeout(tick, del?38:80);
+    if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,1800);return;}}
+    else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+    setTimeout(tick,del?38:82);
   }
   tick();
 })();
 
-/* ── NAV HAMBURGER ── */
-(function(){
-  const btn = document.querySelector('.hamburger');
-  const links = document.querySelector('.nav-links');
-  if(!btn||!links) return;
-  let open=false;
-  btn.addEventListener('click',()=>{
-    open=!open;
-    if(open){
-      links.style.cssText='display:flex;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:rgba(8,10,15,.97);border-bottom:1px solid #21262D;padding:12px 24px;gap:4px;z-index:99';
-    } else {
-      links.style.cssText='display:none';
-    }
-  });
-  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{open=false;links.style.cssText='display:none';}));
-})();
-
-/* ── PROJECT CARDS UNLOCK ── */
+/* LOCKED CARDS */
 (function(){
   function relock(card){
-    card.innerHTML='<p class="locked-label">Bloqueado<br>Clic para revelar</p>';
+    card.innerHTML='<div class="locked-icon">🔒</div><p class="locked-txt">Bloqueado<br>Clic para revelar</p>';
     card.classList.add('locked');
   }
-  document.querySelectorAll('.project-card.locked').forEach(card=>{
+  document.querySelectorAll('.proj-card.locked').forEach(card=>{
     card.addEventListener('click',function(){
       const html=this.dataset.html;
-      if(!html) return;
+      if(!html)return;
       this.classList.remove('locked');
       this.innerHTML=html;
       setTimeout(()=>relock(this),5000);
@@ -1118,36 +1051,35 @@ footer {
   });
 })();
 
-/* ── PROGRESS BARS ── */
+/* PROGRESS BARS */
 (function(){
-  const fills = document.querySelectorAll('.tl-bar-fill');
-  if(!fills.length) return;
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const t=e.target;
-        setTimeout(()=>{ t.style.width=t.dataset.w; },120);
-        obs.unobserve(t);
-      }
-    });
-  },{threshold:0.5});
-  fills.forEach(f=>obs.observe(f));
-})();
-
-/* ── NAV ACTIVE ── */
-(function(){
-  const sections=document.querySelectorAll('section[id]');
-  const links=document.querySelectorAll('.nav-links a');
+  const fills=document.querySelectorAll('.tl-fill');
+  if(!fills.length)return;
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
-        links.forEach(l=>l.style.color='');
-        const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if(a) a.style.color='var(--text-1)';
+        setTimeout(()=>{e.target.style.width=e.target.dataset.w;},100);
+        obs.unobserve(e.target);
       }
     });
-  },{threshold:0.45});
-  sections.forEach(s=>obs.observe(s));
+  },{threshold:.5});
+  fills.forEach(f=>obs.observe(f));
+})();
+
+/* NAV ACTIVE */
+(function(){
+  const secs=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.sidebar-nav a');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>{l.style.color='';l.style.background='';});
+        const a=document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+        if(a){a.style.color='var(--t1)';a.style.background='var(--card)';}
+      }
+    });
+  },{threshold:.4});
+  secs.forEach(s=>obs.observe(s));
 })();
 </script>
 </body>
