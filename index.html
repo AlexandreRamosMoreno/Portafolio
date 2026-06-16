@@ -3,239 +3,727 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Alexandre Ramos — Ciberseguridad</title>
-
+<title>Alexandre Ramos — Cybersecurity Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
-/* ====== TU CSS ORIGINAL (SIN CAMBIOS) ====== */
-/* 🔴 OMITIDO AQUÍ PARA NO HACERTE SCROLL INNECESARIO */
-/* 👉 Mantén tu CSS tal cual lo tienes */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080810;
+  --bg1:#0d0d18;
+  --bg2:#12121f;
+  --bg3:#1a1a2e;
+  --b0:rgba(255,255,255,.04);
+  --b1:rgba(255,255,255,.08);
+  --b2:rgba(255,255,255,.14);
+  --t0:#f4f4f8;
+  --t1:#a8a8c0;
+  --t2:#5a5a78;
+  --acc:#7c6af7;
+  --acc-dim:rgba(124,106,247,.12);
+  --acc-glow:rgba(124,106,247,.25);
+  --cyan:#22d3ee;
+  --green:#34d399;
+  --r:10px;
+  --r2:16px;
+  --f:Inter,system-ui,sans-serif
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--f);background:var(--bg);color:var(--t0);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:60px;
+  display:flex;align-items:center;
+  padding:0 max(24px,calc(50% - 580px));
+  background:rgba(8,8,16,.75);
+  backdrop-filter:blur(20px) saturate(160%);
+  border-bottom:1px solid var(--b0);
+}
+.nav-inner{width:100%;max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:14px;font-weight:500;color:var(--t0);letter-spacing:-.01em}
+.nav-logo em{color:var(--acc);font-style:normal}
+.nav-links{display:flex;gap:2px}
+.nav-links a{font-size:13px;color:var(--t1);padding:6px 12px;border-radius:var(--r);transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--t0);background:var(--b0)}
+.nav-cta{font-size:13px;font-weight:500;color:#fff;background:var(--acc);padding:7px 18px;border-radius:var(--r);transition:opacity .15s}
+.nav-cta:hover{opacity:.85}
+.nav-ham{display:none;background:none;border:none;color:var(--t1);font-size:20px;cursor:pointer;padding:4px}
+
+/* ── SECTIONS ── */
+.section{padding:96px max(24px,calc(50% - 580px));border-bottom:1px solid var(--b0)}
+.section:last-of-type{border-bottom:none}
+.s-inner{max-width:1160px;margin:0 auto}
+.s-tag{font-size:11px;font-weight:500;color:var(--acc);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.s-tag::before{content:'';width:18px;height:1px;background:var(--acc);display:inline-block}
+.s-title{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--t0);margin-bottom:8px}
+.s-sub{font-size:15px;color:var(--t1);max-width:480px;line-height:1.65}
+
+/* ── HERO ── */
+#hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-top:100px;padding-bottom:80px;
+  padding-left:max(24px,calc(50% - 580px));
+  padding-right:max(24px,calc(50% - 580px));
+  position:relative;overflow:hidden;border-bottom:1px solid var(--b0)
+}
+#hero::before{
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(124,106,247,.07) 0%,transparent 70%);
+  pointer-events:none
+}
+.hero-inner{max-width:1160px;margin:0 auto;width:100%}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;color:var(--green);
+  background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);
+  border-radius:999px;padding:5px 14px;margin-bottom:40px
+}
+.badge-pip{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pip 2.4s ease infinite}
+@keyframes pip{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-name{
+  font-size:clamp(44px,8vw,88px);font-weight:600;letter-spacing:-.04em;
+  line-height:.95;color:var(--t0);margin-bottom:28px
+}
+.hero-name span{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.2)}
+.hero-role{
+  font-size:clamp(16px,2.5vw,22px);color:var(--t1);font-weight:300;
+  margin-bottom:24px;letter-spacing:-.01em
+}
+.hero-role strong{color:var(--acc);font-weight:500}
+.hero-desc{font-size:15px;color:var(--t1);max-width:520px;line-height:1.75;margin-bottom:48px}
+.hero-desc em{color:var(--t0);font-style:normal}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.btn-primary{
+  font-size:14px;font-weight:500;color:#fff;background:var(--acc);
+  padding:12px 24px;border-radius:var(--r);border:1px solid var(--acc);
+  transition:opacity .15s,box-shadow .2s;cursor:pointer;
+  box-shadow:0 0 0 0 var(--acc-glow)
+}
+.btn-primary:hover{opacity:.9;box-shadow:0 0 24px var(--acc-glow)}
+.btn-ghost{
+  font-size:14px;font-weight:400;color:var(--t0);
+  padding:12px 24px;border-radius:var(--r);border:1px solid var(--b2);
+  transition:background .15s,border-color .15s;cursor:pointer;background:transparent
+}
+.btn-ghost:hover{background:var(--b0);border-color:var(--b2)}
+.hero-socials{display:flex;gap:8px}
+.social-chip{
+  font-size:12px;font-weight:500;color:var(--t2);
+  border:1px solid var(--b1);border-radius:999px;padding:5px 14px;
+  transition:color .15s,border-color .15s,background .15s
+}
+.social-chip:hover{color:var(--t0);border-color:var(--b2);background:var(--b0)}
+
+/* ── ABOUT ── */
+#about .about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px
+}
+.about-text p{font-size:16px;color:var(--t1);line-height:1.8;margin-bottom:16px}
+.about-text p:last-child{margin-bottom:0}
+.about-text em{color:var(--t0);font-style:normal}
+.about-stats{display:flex;flex-direction:column;gap:12px}
+.stat-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);
+  padding:20px 24px;transition:border-color .2s
+}
+.stat-row:hover{border-color:var(--b2)}
+.stat-num{font-size:32px;font-weight:600;letter-spacing:-.03em;color:var(--t0)}
+.stat-num em{font-size:20px;color:var(--acc);font-style:normal}
+.stat-lbl{font-size:12px;color:var(--t2);text-align:right;max-width:160px;line-height:1.4}
+
+/* ── SKILLS ── */
+#skills .skills-wrap{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.skill-block{background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);padding:24px;transition:border-color .2s}
+.skill-block:hover{border-color:var(--b2)}
+.skill-block-name{font-size:12px;font-weight:500;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--b0)}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.skill-list li{font-size:13px;color:var(--t1);display:flex;align-items:center;gap:9px}
+.skill-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc);opacity:.5;flex-shrink:0}
+
+/* ── PROJECTS ── */
+#projects .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+.proj-card{
+  background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);
+  padding:28px;display:flex;flex-direction:column;gap:16px;
+  transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden
+}
+.proj-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--acc),transparent);
+  opacity:0;transition:opacity .3s
+}
+.proj-card:hover{border-color:var(--b2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.proj-card:hover::after{opacity:.4}
+.proj-card.accordion{cursor:pointer}
+.proj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.proj-idx{font-family:var(--f);font-size:11px;font-weight:500;color:var(--t2);letter-spacing:.05em}
+.proj-badge{
+  font-size:10px;font-weight:500;color:var(--acc);
+  background:var(--acc-dim);border:1px solid rgba(124,106,247,.25);
+  border-radius:999px;padding:3px 10px;white-space:nowrap
+}
+.proj-badge.live{color:var(--green);background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2)}
+.proj-badge.wip{color:var(--cyan);background:rgba(34,211,238,.08);border-color:rgba(34,211,238,.2)}
+.proj-name{font-size:17px;font-weight:600;color:var(--t0);letter-spacing:-.02em;line-height:1.3}
+.proj-desc{font-size:13px;color:var(--t1);line-height:1.7;flex:1}
+.proj-desc strong{color:var(--t0);font-weight:500}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;color:var(--t2);background:var(--bg3);border:1px solid var(--b1);border-radius:6px;padding:3px 8px}
+.proj-links{display:flex;gap:8px}
+.proj-link{
+  font-size:12px;font-weight:500;color:var(--acc);
+  border:1px solid rgba(124,106,247,.3);border-radius:8px;padding:5px 12px;
+  display:inline-flex;align-items:center;gap:5px;transition:all .15s
+}
+.proj-link:hover{background:var(--acc-dim);color:var(--t0)}
+/* accordion */
+.acc-toggle{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:var(--t2);
+  cursor:pointer;transition:color .15s;user-select:none
+}
+.acc-toggle svg{transition:transform .25s}
+.proj-card.accordion.open .acc-toggle svg{transform:rotate(180deg)}
+.acc-toggle:hover{color:var(--acc)}
+.acc-body{
+  display:none;border-top:1px solid var(--b1);padding-top:16px;
+  display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease;overflow:hidden
+}
+.acc-body-inner{overflow:hidden}
+.proj-card.accordion.open .acc-body{grid-template-rows:1fr}
+.acc-body p{font-size:13px;color:var(--t1);line-height:1.7;margin-bottom:10px}
+.acc-body p:last-child{margin-bottom:0}
+.acc-body strong{color:var(--t0);font-weight:500}
+
+/* ── EXPERIENCE ── */
+#experience .tl{position:relative;margin-top:48px;padding-left:24px}
+#experience .tl::before{content:'';position:absolute;left:4px;top:8px;bottom:0;width:1px;background:var(--b1)}
+.tl-item{position:relative;padding-bottom:40px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{
+  position:absolute;left:-24px;top:5px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--b2);
+  transition:border-color .2s
+}
+.tl-item:hover .tl-dot{border-color:var(--acc)}
+.tl-card{background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);padding:24px;transition:border-color .2s}
+.tl-item:hover .tl-card{border-color:var(--b2)}
+.tl-meta{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.tl-role{font-size:15px;font-weight:600;color:var(--t0);letter-spacing:-.01em}
+.tl-date{font-size:12px;color:var(--t2);white-space:nowrap;padding-top:2px}
+.tl-org{font-size:13px;color:var(--acc);margin-bottom:12px;font-weight:500}
+.tl-desc{font-size:13px;color:var(--t1);line-height:1.7;margin-bottom:14px}
+.tl-desc strong{color:var(--t0);font-weight:500}
+.tl-skills{display:flex;flex-wrap:wrap;gap:5px}
+.tl-bar{height:2px;background:var(--b0);border-radius:2px;overflow:hidden;margin-top:14px}
+.tl-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--cyan));border-radius:2px;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+
+/* ── CONTACT ── */
+#contact .contact-inner{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-copy p{font-size:15px;color:var(--t1);line-height:1.8;margin-bottom:12px}
+.contact-copy em{color:var(--t0);font-style:normal}
+.avail-badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+  font-size:13px;font-weight:500;color:var(--green);
+  background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);
+  border-radius:999px;padding:8px 18px
+}
+.contact-links{display:flex;flex-direction:column;gap:8px}
+.c-link{
+  display:flex;align-items:center;gap:16px;
+  background:var(--bg2);border:1px solid var(--b1);border-radius:var(--r2);
+  padding:16px 20px;transition:border-color .15s,transform .15s
+}
+.c-link:hover{border-color:var(--b2);transform:translateX(4px)}
+.c-link-icon{width:36px;height:36px;border-radius:var(--r);background:var(--bg3);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--t2);flex-shrink:0;font-family:var(--f)}
+.c-link-lbl{font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.c-link-val{font-size:13px;color:var(--t0)}
+
+/* ── FOOTER ── */
+footer{
+  padding:32px max(24px,calc(50% - 580px));
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;border-top:1px solid var(--b0)
+}
+.footer-inner{max-width:1160px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-logo{font-size:13px;font-weight:500;color:var(--t2)}
+.footer-logo em{color:var(--acc);font-style:normal}
+.footer-status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2)}
+.f-pip{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pip 2.4s ease infinite}
+.footer-copy{font-size:12px;color:var(--t2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #about .about-grid{grid-template-columns:1fr;gap:40px}
+  #skills .skills-wrap{grid-template-columns:1fr}
+  #projects .proj-grid{grid-template-columns:1fr}
+  #contact .contact-inner{grid-template-columns:1fr;gap:32px}
+  .section{padding-top:72px;padding-bottom:72px}
+  .nav-links,.nav-cta{display:none}
+  .nav-ham{display:block}
+  .hero-name{letter-spacing:-.03em}
+}
+@media(max-width:600px){
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-ghost{text-align:center;justify-content:center}
+  .stat-row{flex-direction:column;align-items:flex-start;gap:6px}
+  .stat-lbl{text-align:left;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
-
 <body>
-<div class="wrapper">
 
-<!-- SIDEBAR (sin cambios importantes) -->
-<aside class="sidebar">
-  <div class="avatar">AR</div>
-  <div class="sidebar-name">Alexandre<br>Ramos Moreno</div>
-  <div class="sidebar-role">Analista de Ciberseguridad<br>Red Team · Blue Team · DFIR</div>
-  <div class="status-badge"><span class="status-pip"></span>Disponible para contratación</div>
-
-  <ul class="sidebar-nav">
-    <li><a href="#formacion"><span class="nav-icon">01</span>Formación</a></li>
-    <li><a href="#proyectos"><span class="nav-icon">02</span>Proyectos</a></li>
-    <li><a href="#skills"><span class="nav-icon">03</span>Skills</a></li>
-    <li><a href="#experiencia"><span class="nav-icon">04</span>Experiencia</a></li>
-    <li><a href="#contacto"><span class="nav-icon">05</span>Contacto</a></li>
-  </ul>
-</aside>
-
-<main class="main">
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo"><em>arm</em>://sec</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#experience">Experiencia</a>
+      <a href="#contact">Contacto</a>
+    </div>
+    <a href="mailto:alexandrerm24@gmail.com" class="nav-cta">Contactar</a>
+    <button class="nav-ham" aria-label="Menú" id="ham">&#9776;</button>
+  </div>
+</nav>
 
 <!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-left">
-
-    <p class="hero-eyebrow">security://junior · portfolio</p>
-
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-pip"></span>
+      Disponible · Open to work
+    </div>
     <h1 class="hero-name">
-      Analista de<br>
-      <span class="line2">Ciberseguridad</span>
+      Alexandre<br><span>Ramos Moreno</span>
     </h1>
-
+    <p class="hero-role">
+      <strong>Analista de Ciberseguridad Junior</strong> &nbsp;·&nbsp; Pentesting · DFIR · SOC
+    </p>
     <p class="hero-desc">
-      Perfil junior orientado a ciberseguridad ofensiva y defensiva (SOC / Pentesting).
-      Experiencia en análisis de vulnerabilidades, entornos Linux y automatización de procesos de seguridad.
-      Enfoque práctico en detección, explotación controlada y hardening de sistemas.
+      Especializado en identificación de vulnerabilidades, análisis forense y automatización de herramientas de seguridad.
+      <em>Busco mi primer rol profesional en un equipo de seguridad ofensiva o SOC.</em>
     </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">Ver proyectos</a>
+      <a href="#contact" class="btn-ghost">Contactar</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" class="social-chip">LinkedIn</a>
+      <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="social-chip">GitHub</a>
+      <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="social-chip">TryHackMe</a>
+      <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="social-chip">Villajoyosa, Alicante</a>
+    </div>
+  </div>
+</section>
 
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="s-inner">
+    <p class="s-tag">Sobre mí</p>
+    <h2 class="s-title">Técnico con enfoque en seguridad real</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Formación en ciberseguridad con base sólida en sistemas, redes y desarrollo de herramientas.
+          Durante mi FCT en el Ayuntamiento de San Vicente del Raspeig trabajé en entornos TI reales:
+          <em>identificación de CVEs activos, hardening de sistemas y control de accesos</em>.
+        </p>
+        <p>
+          Construyo herramientas propias cuando las que hay no son suficientes.
+          Mi proyecto final automatizó el ciclo completo de un pentest,
+          <em>reduciendo el tiempo de reporting manual</em> mediante scripting en Python y Bash.
+        </p>
+        <p>
+          Mentalidad de red y blue team: entender el ataque para defender mejor.
+          Carnet B, disponibilidad para viajar y muchas ganas de crecer en un equipo técnico real.
+        </p>
       </div>
-      <div class="terminal-body">
-        <div class="t-line">
-          <span class="t-prompt">~</span>
-          <span class="t-text">whoami</span>
+      <div class="about-stats">
+        <div class="stat-row">
+          <div><div class="stat-num">5<em>+</em></div></div>
+          <div class="stat-lbl">Proyectos técnicos documentados</div>
         </div>
-        <div class="t-line">
-          <span class="t-prompt">›</span>
-          <span class="t-out" id="typed"></span><span class="t-cursor"></span>
+        <div class="stat-row">
+          <div><div class="stat-num">3<em>y</em></div></div>
+          <div class="stat-lbl">Formación técnica en sistemas y seguridad</div>
+        </div>
+        <div class="stat-row">
+          <div><div class="stat-num">FCT</div></div>
+          <div class="stat-lbl">Practicum en infraestructura TI real</div>
         </div>
       </div>
     </div>
-
-    <div class="hero-ctas">
-      <a href="#proyectos" class="btn btn-acc">Ver trabajo</a>
-      <a href="#contacto" class="btn btn-outline">Contactar</a>
-    </div>
-
   </div>
+</section>
 
-  <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-value" style="color:var(--acc)">2+</div>
-      <div class="stat-label">Años formación técnica en IT & seguridad</div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-value" style="color:var(--acc2)">5+</div>
-      <div class="stat-label">Proyectos de seguridad implementados</div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-value" style="color:var(--acc3)">FCT</div>
-      <div class="stat-label">Entorno real en administración pública</div>
-    </div>
-
-    <div class="info-block">
-      <div class="info-block-title">Stack técnico</div>
-      <div class="info-row"><span class="info-pip" style="background:var(--acc)"></span>Python · Bash · Flask</div>
-      <div class="info-row"><span class="info-pip" style="background:var(--acc2)"></span>Nmap · Burp Suite · Metasploit</div>
-      <div class="info-row"><span class="info-pip" style="background:var(--acc3)"></span>Linux · Active Directory · Docker</div>
-      <div class="info-row"><span class="info-pip" style="background:var(--t3)"></span>Wireshark · Volatility · SIEM básico</div>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="s-inner">
+    <p class="s-tag">Stack técnico</p>
+    <h2 class="s-title">Habilidades</h2>
+    <p class="s-sub">Herramientas y áreas de conocimiento aplicado.</p>
+    <div class="skills-wrap">
+      <div class="skill-block">
+        <div class="skill-block-name">Seguridad ofensiva</div>
+        <ul class="skill-list">
+          <li>Pentesting &amp; Ethical Hacking</li>
+          <li>Nmap · Metasploit Framework</li>
+          <li>Burp Suite · OWASP Top 10</li>
+          <li>Wireshark · Análisis de tráfico</li>
+          <li>CTF: PrivEsc · Recon · SSRF</li>
+          <li>Threat hunting básico</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-name">Sistemas &amp; Redes</div>
+        <ul class="skill-list">
+          <li>Linux (Debian/Ubuntu) · Windows Server</li>
+          <li>Active Directory · IAM</li>
+          <li>TCP/IP · VPN · Firewalls · ACL</li>
+          <li>Docker · Proxmox · VirtualBox</li>
+          <li>Hardening de sistemas</li>
+          <li>Análisis de logs · SIEM básico</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-name">Scripting &amp; DFIR</div>
+        <ul class="skill-list">
+          <li>Python · Bash · PowerShell</li>
+          <li>SQL · PHP · Flask</li>
+          <li>Git &amp; GitHub</li>
+          <li>Volatility · Autopsy</li>
+          <li>Análisis de malware estático/dinámico</li>
+          <li>Automatización de procesos</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROYECTOS -->
-<section class="section" id="proyectos">
-<div class="s-head">
-  <p class="s-label">02 · Proyectos</p>
-  <h2 class="s-title">Casos técnicos</h2>
-  <p class="s-sub">Proyectos enfocados en automatización, análisis de vulnerabilidades y respuesta a incidentes.</p>
-</div>
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="s-inner">
+    <p class="s-tag">Trabajo técnico</p>
+    <h2 class="s-title">Proyectos</h2>
+    <p class="s-sub">Casos reales y proyectos propios. Los expandibles incluyen el detalle técnico completo.</p>
+    <div class="proj-grid">
 
-<div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-head">
+          <span class="proj-idx">01</span>
+          <span class="proj-badge live">Proyecto Final ASIR</span>
+        </div>
+        <div class="proj-name">Herramienta de Pentesting Automatizado</div>
+        <p class="proj-desc">
+          Automatiza el ciclo completo de una auditoría de seguridad: escaneo → análisis → generación de informe.
+          <strong>Reduce el tiempo de reporting manual</strong> eliminando tareas repetitivas mediante scripting en Python y Bash.
+          Integración con modelos de IA para generación de informes estructurados.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">API IA</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+      </div>
 
-  <div class="proj-card" data-color="violet">
-    <div class="proj-top">
-      <span class="proj-num">01</span>
-      <span class="proj-tag">Proyecto final ASIR</span>
-    </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <span class="proj-idx">02</span>
+          <span class="proj-badge live">FCT · Entorno real</span>
+        </div>
+        <div class="proj-name">Análisis de Vulnerabilidades — Infraestructura TI</div>
+        <p class="proj-desc">
+          Identificación de CVEs activos y superficies de ataque en la infraestructura del Ayuntamiento de San Vicente del Raspeig.
+          <strong>Hardening aplicado en servidores y endpoints</strong>, revisión de políticas de control de accesos y elaboración de informe de riesgos con priorización por criticidad.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Nmap</span><span class="tag">Metasploit</span><span class="tag">OWASP</span><span class="tag">Hardening</span><span class="tag">ACLs</span>
+        </div>
+      </div>
 
-    <div class="proj-name">Plataforma de Pentesting Automatizado</div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <span class="proj-idx">03</span>
+          <span class="proj-badge wip">En progreso</span>
+        </div>
+        <div class="proj-name">CTF Writeups — TryHackMe</div>
+        <p class="proj-desc">
+          Resolución documentada de retos: escalada de privilegios en Linux, reconocimiento, SSRF y post-explotación.
+          <strong>Cada writeup documenta el proceso completo</strong>: enumeración, vector de ataque, explotación y mitigación recomendada.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Linux</span><span class="tag">PrivEsc</span><span class="tag">Recon</span><span class="tag">SSRF</span><span class="tag">Post-explotación</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="proj-link">Perfil THM →</a>
+        </div>
+      </div>
 
-    <p class="proj-desc">
-      Desarrollo de sistema que automatiza el flujo de reconocimiento, escaneo de vulnerabilidades y generación de reportes técnicos.
-      Redujo el tiempo de documentación manual en ~70% en entorno de pruebas.
-    </p>
+      <div class="proj-card accordion" id="acc-dfir">
+        <div class="proj-head">
+          <span class="proj-idx">04</span>
+          <span class="proj-badge">Lab personal</span>
+        </div>
+        <div class="proj-name">DFIR Lab — Forense e Incident Response</div>
+        <p class="proj-desc">Análisis forense digital e incident response en entorno de laboratorio controlado.</p>
+        <div class="proj-tags">
+          <span class="tag">Volatility</span><span class="tag">Autopsy</span><span class="tag">Wireshark</span><span class="tag">DFIR</span>
+        </div>
+        <div class="acc-toggle" role="button" aria-expanded="false">
+          <span>Ver case study</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p><strong>Qué hice:</strong> análisis de volcados de memoria con Volatility para identificar procesos maliciosos y conexiones sospechosas. Extracción y análisis de artefactos del sistema de ficheros con Autopsy. Correlación de tráfico de red con Wireshark.</p>
+            <p><strong>Resultado:</strong> reconstrucción del timeline completo del incidente, identificación de IOCs y elaboración de informe de respuesta siguiendo metodología DFIR estándar.</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="tags">
-      <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">Flask</span><span class="pill">MySQL</span>
-    </div>
+      <div class="proj-card accordion" id="acc-malware">
+        <div class="proj-head">
+          <span class="proj-idx">05</span>
+          <span class="proj-badge">Lab personal</span>
+        </div>
+        <div class="proj-name">Malware Analysis — Estático y Dinámico</div>
+        <p class="proj-desc">Análisis de muestras de malware en sandbox aislado usando técnicas estáticas y dinámicas.</p>
+        <div class="proj-tags">
+          <span class="tag">Ghidra</span><span class="tag">Python</span><span class="tag">Sandbox</span><span class="tag">IOCs</span>
+        </div>
+        <div class="acc-toggle" role="button" aria-expanded="false">
+          <span>Ver case study</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p><strong>Análisis estático:</strong> desensamblado con Ghidra, extracción de strings sospechosas, identificación de imports y análisis de cabeceras PE para clasificación preliminar.</p>
+            <p><strong>Análisis dinámico:</strong> ejecución en sandbox aislado, monitorización de llamadas al sistema, conexiones de red y modificaciones en registro/ficheros.</p>
+            <p><strong>Resultado:</strong> identificación y documentación de IOCs, clasificación de la muestra y reporte de comportamiento listo para integración en SIEM.</p>
+          </div>
+        </div>
+      </div>
 
-    <a href="https://github.com/AlexandreRamosMoreno" class="proj-link">Repositorio →</a>
-  </div>
-
-  <div class="proj-card" data-color="pink">
-    <div class="proj-top">
-      <span class="proj-num">02</span>
-      <span class="proj-tag">Entorno real (FCT)</span>
-    </div>
-
-    <div class="proj-name">Auditoría de Seguridad en Infraestructura Pública</div>
-
-    <p class="proj-desc">
-      Identificación de vulnerabilidades críticas (CVE) en sistemas internos.
-      Aplicación de hardening, revisión de servicios expuestos y documentación de riesgos técnicos para su mitigación.
-    </p>
-
-    <div class="tags">
-      <span class="pill">Nmap</span><span class="pill">Metasploit</span><span class="pill">OWASP</span><span class="pill">Hardening</span>
-    </div>
-  </div>
-
-  <div class="proj-card" data-color="green">
-    <div class="proj-top">
-      <span class="proj-num">03</span>
-      <span class="proj-tag">CTF / práctica continua</span>
-    </div>
-
-    <div class="proj-name">Análisis de vulnerabilidades en entornos CTF</div>
-
-    <p class="proj-desc">
-      Resolución documentada de escenarios de explotación: escalada de privilegios, SSRF, enumeración de servicios y post-explotación en entornos controlados.
-    </p>
-
-    <div class="tags">
-      <span class="pill">TryHackMe</span><span class="pill">Linux</span><span class="pill">PrivEsc</span><span class="pill">SSRF</span>
-    </div>
-  </div>
-
-</div>
-</section>
-
-<!-- EXPERIENCIA -->
-<section class="section" id="experiencia">
-<div class="s-head">
-  <p class="s-label">04 · Experiencia</p>
-  <h2 class="s-title">Experiencia técnica</h2>
-</div>
-
-<div class="tl">
-
-<div class="tl-item">
-  <div class="tl-left"><div class="tl-dot"></div></div>
-  <div class="tl-body">
-    <div class="tl-header">
-      <span class="tl-role">Prácticas en Ciberseguridad (FCT)</span>
-      <span class="tl-date">2025 – 2026</span>
-    </div>
-    <div class="tl-org">Administración Pública</div>
-    <p class="tl-desc">
-      Análisis de riesgos en infraestructura interna, revisión de configuraciones de red y sistemas.
-      Aplicación de hardening en equipos Windows/Linux y documentación de vulnerabilidades detectadas.
-    </p>
-    <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="90%"></div></div>
-  </div>
-</div>
-
-<div class="tl-item">
-  <div class="tl-left"><div class="tl-dot"></div></div>
-  <div class="tl-body">
-    <div class="tl-header">
-      <span class="tl-role">Proyecto técnico ASIR</span>
-      <span class="tl-date">2022 – 2024</span>
-    </div>
-    <div class="tl-org">Automatización de auditorías de seguridad</div>
-    <p class="tl-desc">
-      Desarrollo de herramienta para automatizar escaneo y reporting de vulnerabilidades.
-      Integración de scripting para reducción de tareas manuales repetitivas en entornos de laboratorio.
-    </p>
-    <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="100%"></div></div>
-  </div>
-</div>
-
-</div>
-</section>
-
-<!-- CONTACTO (sin cambios grandes) -->
-<section class="section" id="contacto">
-  <div class="s-head">
-    <p class="s-label">05 · Contacto</p>
-    <h2 class="s-title">Contacto</h2>
-  </div>
-
-  <p class="contact-intro">
-    Disponible para roles junior en SOC, pentesting o ciberseguridad defensiva.
-  </p>
-
-  <div class="contact-grid">
-    <div class="c-row">
-      <div class="c-icon">✉</div>
-      <div><div class="c-label">Email</div><div class="c-val">alexandrerm24@gmail.com</div></div>
     </div>
   </div>
 </section>
 
-</main>
-</div>
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="s-inner">
+    <p class="s-tag">Trayectoria</p>
+    <h2 class="s-title">Experiencia</h2>
+    <p class="s-sub">Historial técnico relevante.</p>
+    <div class="tl">
 
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">Técnico de Ciberseguridad — FCT</span>
+            <span class="tl-date">2025 – 2026</span>
+          </div>
+          <div class="tl-org">Ayuntamiento de San Vicente del Raspeig · Departamento TI</div>
+          <p class="tl-desc">
+            Trabajé en la identificación y análisis de amenazas activas sobre la infraestructura TI municipal.
+            <strong>Apliqué metodologías de análisis de riesgos</strong>, ejecuté tareas de hardening en servidores y endpoints,
+            y reforcé políticas de control de accesos e IAM. Elaboré documentación técnica de vulnerabilidades detectadas
+            con priorización por criticidad para el equipo interno.
+          </p>
+          <div class="tl-skills">
+            <span class="tag">Vulnerability Assessment</span><span class="tag">Hardening</span><span class="tag">IAM</span><span class="tag">Documentación técnica</span>
+          </div>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="90%"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">Proyecto Final ASIR — Desarrollo propio</span>
+            <span class="tl-date">2022 – 2024</span>
+          </div>
+          <div class="tl-org">Herramienta de Pentesting Automatizado con IA</div>
+          <p class="tl-desc">
+            Diseño e implementación completa de una herramienta que automatiza el flujo de trabajo de una auditoría:
+            escaneo con Nmap, análisis de resultados y <strong>generación automática de informes de vulnerabilidades</strong>
+            mediante integración con modelos de IA. Stack completo: Python · Bash · Flask · PHP · MySQL.
+          </p>
+          <div class="tl-skills">
+            <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Flask</span><span class="tag">Automatización</span><span class="tag">IA</span>
+          </div>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="100%"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <span class="tl-role">Técnico Informático — FCT</span>
+            <span class="tl-date">2020 – 2022</span>
+          </div>
+          <div class="tl-org">Marcos Tonda · Departamento de Logística y Calidad</div>
+          <p class="tl-desc">
+            Soporte técnico y gestión de sistemas informáticos en entorno empresarial.
+            <strong>Gestión de documentación técnica y control de calidad</strong>, uso de herramientas de ERP
+            para gestión de pedidos y facturación. Primera experiencia en entorno profesional real.
+          </p>
+          <div class="tl-skills">
+            <span class="tag">Soporte TI</span><span class="tag">ERP</span><span class="tag">Documentación</span>
+          </div>
+          <div class="tl-bar"><div class="tl-fill" style="width:0%" data-w="70%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="s-inner">
+    <p class="s-tag">Contacto</p>
+    <h2 class="s-title">Hablamos</h2>
+    <div class="contact-inner">
+      <div class="contact-copy">
+        <p>Estoy buscando mi primera posición profesional en ciberseguridad. Si tienes una oportunidad en un equipo de <em>SOC, pentesting o respuesta a incidentes</em>, me interesa.</p>
+        <p>Respondo rápido, tengo disponibilidad inmediata y carnet B.</p>
+        <div class="avail-badge">
+          <span class="badge-pip"></span>
+          Disponible para posiciones junior · España
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:alexandrerm24@gmail.com" class="c-link">
+          <div class="c-link-icon">✉</div>
+          <div><div class="c-link-lbl">Email</div><div class="c-link-val">alexandrerm24@gmail.com</div></div>
+        </a>
+        <a href="tel:+34603824876" class="c-link">
+          <div class="c-link-icon">☎</div>
+          <div><div class="c-link-lbl">Teléfono</div><div class="c-link-val">+34 603 82 48 76</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/alexandre-ramos-moreno-66a4aa390/" target="_blank" class="c-link">
+          <div class="c-link-icon">in</div>
+          <div><div class="c-link-lbl">LinkedIn</div><div class="c-link-val">Alexandre Ramos Moreno</div></div>
+        </a>
+        <a href="https://github.com/AlexandreRamosMoreno" target="_blank" class="c-link">
+          <div class="c-link-icon">gh</div>
+          <div><div class="c-link-lbl">GitHub</div><div class="c-link-val">AlexandreRamosMoreno</div></div>
+        </a>
+        <a href="https://tryhackme.com/p/AlexandreRM" target="_blank" class="c-link">
+          <div class="c-link-icon">⚑</div>
+          <div><div class="c-link-lbl">TryHackMe</div><div class="c-link-val">AlexandreRM</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo"><em>arm</em>://sec</span>
+    <div class="footer-status"><span class="f-pip"></span>sistema online</div>
+    <span class="footer-copy">© 2026 Alexandre Ramos Moreno</span>
+  </div>
+</footer>
+
+<script>
+/* TYPING */
+(function(){
+  const el=document.querySelector('#hero .hero-role strong');
+  if(!el)return;
+  const words=['Analista de Ciberseguridad Junior','Pentesting · Red Team','Blue Team · DFIR','SOC Analyst'];
+  let wi=0,ci=0,del=false;
+  function tick(){
+    const w=words[wi];
+    if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,2200);return;}}
+    else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+    setTimeout(tick,del?35:80);
+  }
+  tick();
+})();
+
+/* HAMBURGER */
+(function(){
+  const ham=document.getElementById('ham');
+  const links=document.querySelector('.nav-links');
+  const cta=document.querySelector('.nav-cta');
+  if(!ham)return;
+  let open=false;
+  ham.addEventListener('click',()=>{
+    open=!open;
+    if(open){
+      [links,cta].forEach(el=>{if(el){el.style.cssText='display:flex;position:fixed;flex-direction:column;top:60px;left:0;right:0;background:rgba(8,8,16,.97);border-bottom:1px solid rgba(255,255,255,.08);padding:12px 24px;gap:2px;z-index:99';}});
+      if(cta)cta.style.cssText='display:block;position:fixed;top:auto;bottom:0;left:0;right:0;z-index:99;text-align:center;border-radius:0;padding:14px;margin:0;';
+    } else {
+      [links,cta].forEach(el=>{if(el)el.removeAttribute('style');});
+    }
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{open=false;[links,cta].forEach(el=>{if(el)el.removeAttribute('style');});}));
+})();
+
+/* ACCORDION */
+(function(){
+  document.querySelectorAll('.proj-card.accordion').forEach(card=>{
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.proj-link'))return;
+      const wasOpen=this.classList.contains('open');
+      document.querySelectorAll('.proj-card.accordion').forEach(c=>c.classList.remove('open'));
+      if(!wasOpen)this.classList.add('open');
+    });
+  });
+})();
+
+/* PROGRESS BARS */
+(function(){
+  const fills=document.querySelectorAll('.tl-fill');
+  if(!fills.length)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{e.target.style.width=e.target.dataset.w;},120);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.5});
+  fills.forEach(f=>obs.observe(f));
+})();
+
+/* NAV ACTIVE */
+(function(){
+  const secs=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.nav-links a');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>{l.style.color='';l.style.background='';});
+        const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if(a){a.style.color='var(--t0)';}
+      }
+    });
+  },{threshold:.35});
+  secs.forEach(s=>obs.observe(s));
+})();
+</script>
 </body>
 </html>
